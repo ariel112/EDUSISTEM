@@ -9,3 +9,16 @@
 .center{
 	text-align:center;
 }
+
+.estudiante{
+   margin: 2px;
+	border: 1px solid #3690e8;
+	padding: 22px;
+}
+
+.titulo-document{
+	padding: 0px;
+	margin: 0px;
+	background: #2681dc;
+	color: white;
+}

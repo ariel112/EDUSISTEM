@@ -6,186 +6,148 @@
 
 
 <!-- Header -->							
-<div  class="row">
-<div class="col-md-5">
- 
-      {!! Form::open(['route' => 'aspirantes.store', 'method'=>'POST', 'files'=>true, 'id'=>'formEmpty','data-smk-icon'=>'glyphicon-remove-sign']) !!}
-  
-    <br>
-   
-   		<div align="center">
-   			<legend>Datos del becario<br><br></legend>
-   		</div>	
-   		
-       	
-	   <div class="form-group">
-	   		{!! Form::label('identidad','Identidad:',['class'=>'control-label']) !!}
-	   		{!! Form::text('identidad',null,['class'=>'form-control','required','placeholder'=>'Escriba la idendtidad sin guiones o puntos. Ejemplo (0825166412189)...', 'minlength'=>'13' ,'maxlength'=>'13','pattern'=>'[0-9]'])!!}
-	   </div>
-	   <br>
-	   <div class="form-group" >
-	   		
-	   	    <label class="control-label">Nombre Completo:</label>
-	   		<input 
-	   		type="text" name="nombre" class="form-control" placeholder="Nombre completo..." required
-	   		  id="nombre"  >
-	   		
-	   </div>
-            <br>
 
-        <div class="form-group" style="width: 270px;"  >
-	   		
-	   		{!! Form::label('fecha_nacimiento','Fecha de Nacimiento:',['class'=>'control-label']) !!}
-	   		<div style="width: 265px;">
-	   		 {!! Form::date('fecha_nacimiento',null,['class'=>'form-control','required','placeholder'=>'Fecha de Nacimiento'])!!}	   
-	   	    </div>
-	   </div>
-	
-	   <br>
-	   <div class="form-group" style="width: 209px;"  >
-	   		{!! Form::label('genero','Genero:',['class'=>'control-label']) !!}
-	   		<div style="width: 195px;">
-	   		  {!! Form::select('genero',['Masculino'=> 'Masculino','Femenino'=>'Femenino'],null,['class'=>'form-control', 'required','placeholder'=>'Seleccione un Género..'])!!}
-	   		</div>
-	   </div>
-	   <br>
-	   <div class="form-group">
-	   		{!! Form::label('telefono','Teléfono:',['class'=>'control-label']) !!}
-	   		
-	   		   {!! Form::number('telefono',null,['class'=>'form-control','required', 'minlength'=>'8' ,'maxlength'=>'8','placeholder'=>'Escriba el número telefónico sin guiones. Ejemplo (56542535)...'])!!}
-	   		 
-	   </div>
-	   <br>
-          <div class="form-group">
-	   		{!! Form::label('correo','Correo electrónico:',['class'=>'control-label']) !!}
-	   		{!! Form::email('correo',null,['class'=>'form-control','placeholder'=>'example@gmail.com'])!!}
-	   </div>
-	   
-	   <br>
-       <div class="form-group">
-	   		{!! Form::label('Universidad','Universidad:',['class'=>'control-label']) !!}
-	   		{!! Form::select('universidad',
-	   		[
-	   		'Universidad Nacional Autónoma de Honduras (UNAH)'=> 'Universidad Nacional Autónoma de Honduras (UNAH) ',
-	   		'Universidad Pedagógica Nac. Francisco Morazán (UPNFM)'=>'Universidad Pedagógica Nac. Francisco Morazán (UPNFM)',
-	   		'Universidad Católica de Honduras (UNICAH)'=>'Universidad Católica de Honduras (UNICAH)',
-	   		'Universidad Tecnológica Centroamericana (UNITEC)'=>'Universidad Tecnológica Centroamericana (UNITEC)',
-	   		'Escuela Agrícola Panamericana Zamorano'=>'Escuela Agrícola Panamericana Zamorano',
-	   		'Universidad José Cecilio del Valle (UJCV)'=>'Universidad José Cecilio del Valle (UJCV)',
-	   		'Universidad Politécnica de Ingeniería de Honduras (UPI)'=>'Universidad Politécnica de Ingeniería de Honduras (UPI)',
-	   		'Universidad Metropolitana de Honduras (UNIMETRO)'=>' Universidad Metropolitana de Honduras (UNIMETRO)',
-	   		'Centro de Diseño Arquitectura y Construcción (CEDAC)'=>'Centro de Diseño Arquitectura y Construcción (CEDAC)',
-	   		 ]
-	   		,null,['class'=>'form-control', 'required','placeholder'=>'Seleccione una universidad...'])!!}
-	   </div>
-	   <br>
-	     <div class="form-group">
-	   		{!! Form::label('carrera','Carrera:',['class'=>'control-label']) !!}
-	   		{!! Form::text('carrera',null,['class'=>'form-control','required','placeholder'=>'Carrera...'])!!}
-	   </div>
-	   <br>
-	     <div class="form-group">
-	   		{!! Form::label('tipo_periodo','Tipo de periodo:',['class'=>'control-label']) !!}
-	   		{!! Form::select('tipo_periodo',['Trimestrales'=> 'Trimestrales','Semestrales'=>'Semestrales'],null,['class'=>'form-control', 'required','placeholder'=>'Seleccione el tipo de periodo..'])!!}
-	   </div>
-	    <br>
-	   
-	    <div class="form-group" >
-	   		{!! Form::label('direccion','Direcció:n:',['class'=>'control-label']) !!}
-	   		{!! Form::textarea('direccion',null,['class'=>'form-control','required','rows'=>'4','maxlength'=>'150','placeholder'=>'Escriba la dirección....  '])!!}
-	   </div>
-	  
-	   <br>
-
-	   <br>
-
-
-       
-	   	<div align="center">
-           <legend>Datos de la madre<br><br></legend>
-        </div>   
-           
-       <div class="form-group">
-	   		{!! Form::label('nombre_madre','Nombre completo: ',['class'=>'control-label']) !!}
-	   		{!! Form::text('nombre_madre',null,['class'=>'form-control','placeholder'=>'Nombre completo...'])!!}
-	   </div>
-       <br>
-        <div class="form-group">
-	   		{!! Form::label('identidad_madre','Identidad:',['class'=>'control-label']) !!}
-	   		{!! Form::text('identidad_madre',null,['class'=>'form-control', 'minlength'=>'13' ,'maxlength'=>'13','placeholder'=>'Escriba la identidad sin guiones o puntos. Ejemplo (0825166412189)...'])!!}
-	   </div>
-	   <br>
-	   
-	    <div class="form-group">
-	   		{!! Form::label('ocupacion_madre','Ocupación:',['class'=>'control-label']) !!}
-	   		{!! Form::text('ocupacion_madre',null,['class'=>'form-control','placeholder'=>'Ocupación...'])!!}
-	   </div>
-	   <br>
-	    <div class="form-group">
-	   		{!! Form::label('empresa_madre','Empresa:',['class'=>'control-label']) !!}
-	   		{!! Form::text('empresa_madre',null,['class'=>'form-control','placeholder'=>'Empresa...'])!!}
-	   </div>
-	   <br>
-	   <div class="form-group">
-	   		{!! Form::label('telefono_madre','Teléfono:',['class'=>'control-label']) !!}
-	   	
-	   		   {!! Form::number('telefono_madre',null,['class'=>'form-control', 'minlength'=>'8' ,'maxlength'=>'8','placeholder'=>'Escriba el número telefónico sin guiones. Ejemplo (56542535)...'])!!}
-	   	 
-	   </div>
-	   <br>
-	 
-	   <div class="form-group">
-	   		{!! Form::label('correo_madre','Correo electrónico:',['class'=>'control-label']) !!}
-	   		{!! Form::email('correo_madre',null,['class'=>'form-control','placeholder'=>'example@gmail.com'])!!}
-	   </div>
-	   <br>
-	   <br>
-	   	<div align="center">
-	   		<legend>Datos del padre<br><br></legend>
-	   	</div>	
-       <div class="form-group">
-	   		{!! Form::label('nombre_padre','Nombre completo:',['class'=>'control-label']) !!}
-	   		{!! Form::text('nombre_padre',null,['class'=>'form-control','placeholder'=>'Nombre completo...'])!!}
-	   </div>
-       <br>
-        <div class="form-group">
-	   		{!! Form::label('identidad_padre','Identidad:',['class'=>'control-label']) !!}
-	   		{!! Form::text('identidad_padre',null,['class'=>'form-control', 'minlength'=>'13' ,'maxlength'=>'13','placeholder'=>'Escriba la identidad sin guiones o puntos. Ejemplo (0825166412189)...'])!!}
-	   </div>
-	   <br>
-	   
-	    <div class="form-group">
-	   		{!! Form::label('ocupacion_padre','Ocupación:',['class'=>'control-label']) !!}
-	   		{!! Form::text('ocupacion_padre',null,['class'=>'form-control','placeholder'=>'Ocupación...'])!!}
-	   </div>
-	   <br>
-	    <div class="form-group">
-	   		{!! Form::label('empresa_padre','Empresa:',['class'=>'control-label']) !!}
-	   		{!! Form::text('empresa_padre',null,['class'=>'form-control','placeholder'=>'Empresa...'])!!}
-	   </div>
-	   <br>
-	   <div class="form-group">
-	   		{!! Form::label('telefono_padre','Teléfono:',['class'=>'control-label']) !!}
-	   		   		  {!! Form::number('telefono_padre',null,['class'=>'form-control', 'minlength'=>'8' ,'maxlength'=>'8','placeholder'=>'Escriba el número telefónico sin guiones. Ejemplo (56542535)...'])!!}
-	   		  
-	   </div>
-	   <br>
-	 
-	   <div class="form-group">
-	   		{!! Form::label('correo_padre','Correo electronico:',['class'=>'control-label']) !!}
-	   		{!! Form::email('correo_padre',null,['class'=>'form-control','placeholder'=>'example@gmail.com'])!!}
-	   </div>
-	  <br>
+<div>
+	<div  class="row">
+		<div class="col-md-5">
+		 <div class="estudiante">
+		   <div align="center" class="titulo-document">INFORMACION DEL (LA) ESTUDIANTE</div>	
+			<div class="form-group row">
+      		<label for="inputEmail3" class=" col-form-label">Nombre Completo: </label>     
+		    <input type="text" class="form-control" placeholder="Nombre....">
+		 
+			
+      		<label for="inputEmail3" class=" col-form-label">No. Identidad: </label>     
+		    <input type="text" class="form-control" placeholder="Identidad....">
 		  
-	     <div class="form-group">
-	     	<div align="center">
-	   		  {!! Form::submit('Registrar',['class'=>'btn btn-info','id'=>'btnEmpty' ]) !!}
-	   	    </div>
-	   </div>
+	
+      		<label for="inputEmail3" class=" col-form-label">Correo Electronico: </label>     
+		    <input type="email" class="form-control" placeholder="Correo....">
+		   	
+		   	 <div class="col-4  mt-3">
+		      <label class="sr-only" for="inlineFormInputGroupUsername">Celular:</label>
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <div class="input-group-text"><i class="icon mobile alternate large blue"></i></div>
+		        </div>
+		        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Celular...">
+		      </div>
+		    </div>
 
-	  
+		    <div class="col-4  mt-3">
+		      <label class="sr-only" for="inlineFormInputGroupUsername">Whatsapp:</label>
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <div class="input-group-text"><i class="icon whatsapp large green"></i></div>
+		        </div>
+		        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="whatsapp...">
+		      </div>
+		    </div>  
 
-	</div>						
+		    <div class="col-4  mt-3">
+		      <label class="sr-only" for="inlineFormInputGroupUsername">Telefono fijo:</label>
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <div class="input-group-text"><i class="icon phone large violet"></i></div>
+		        </div>
+		        <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Telefono fijo...">
+		      </div>
+		    </div> 
+			
+      		<label for="inputEmail3" class=" col-form-label">Direccion de casa: </label>     
+		    <textarea class="form-control" placeholder="Direccion..."></textarea>
+
+		    <select class="custom-select mt-3">
+			  <option selected>Seleccion el departamento:</option>
+			  <option value="1">One</option>
+			  <option value="2">Two</option>
+			  <option value="3">Three</option>
+			</select>
+
+			<select class="custom-select mt-3">
+			  <option selected>Seleccione el Municipio:</option>
+			  <option value="1">One</option>
+			  <option value="2">Two</option>
+			  <option value="3">Three</option>
+			</select>
+		    </div>
+		  </div>  			
+		</div>
+
+		<!--informacion del la universidad --->
+		<div class="col-md-5">
+		 <div class="estudiante">
+		   <div align="center" class="titulo-document">Centro Universitario</div>	
+			<div class="form-group row">
+      		<label for="inputEmail3" class=" col-form-label">Nombre del centro universitario: </label>     
+		    <input type="text" class="form-control" placeholder="Nombre....">
+		 
+			
+      		<label for="inputEmail3" class=" col-form-label">Departamento: </label>     
+		    <input type="text" class="form-control" placeholder="Identidad....">
+		  
+	
+      		<label for="inputEmail3" class=" col-form-label">Carrera: </label>     
+		    <input type="text" class="form-control" placeholder="Correo....">
+
+		     <select class="custom-select mt-3">
+			  <option selected>Seleccion el tipo de periodo:</option>
+			  <option value="1">Semestrales</option>
+			  <option value="2">Trimestrales</option>
+		
+			</select>
+		   	
+		   	<label for="inputEmail3" class=" col-form-label">Cuenta: </label>     
+		    <input type="text" class="form-control" placeholder="Correo....">  			
+      	
+		    	     
+			  
+					</div>							
+			</div>	
+
+			</div>
+
+
+
+
+
+
+		<!--informacion de los datos personales y parentesco --->
+		<div class="col-md-5">
+		 <div class="estudiante">
+		   <div align="center" class="titulo-document">INFORMACION DE LOS DATOS PERSONALES Y PARENTESCOS</div>	
+			<div class="form-group row">
+      		<label for="inputEmail3" class=" col-form-label">Nombre del centro universitario: </label>     
+		    <input type="text" class="form-control" placeholder="Nombre....">
+		 
+			
+      		<label for="inputEmail3" class=" col-form-label">Departamento: </label>     
+		    <input type="text" class="form-control" placeholder="Identidad....">
+		  
+	
+      		<label for="inputEmail3" class=" col-form-label">Carrera: </label>     
+		    <input type="text" class="form-control" placeholder="Correo....">
+
+		     <select class="custom-select mt-3">
+			  <option selected>Seleccion el tipo de periodo:</option>
+			  <option value="1">Semestrales</option>
+			  <option value="2">Trimestrales</option>
+		
+			</select>
+		   	
+		   	<label for="inputEmail3" class=" col-form-label">Cuenta: </label>     
+		    <input type="text" class="form-control" placeholder="Correo....">       			  
+			</div>					
+		</div>		
+
+
+
+
+
+
+
+
+</div>
 </div>
 
  
