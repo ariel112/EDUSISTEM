@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('template/vendors/bootstrap-daterangepicker/daterangepicker.css')}}">
     <!-- Custom Theme Style -->
     <link rel="stylesheet" type="text/css" href="{{asset('template/build/css/custom.css')}}">
+    <!--Estilo propio mio -->
     <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
 
 

@@ -141,7 +141,7 @@ function valida(e){
                           <br>
                           <div align="center"><h2>CENTRO UNIVERSITARIO</h2></div>
 
-							 <div class="form-group">
+							             <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nivel Educativo: <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -236,33 +236,35 @@ function valida(e){
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Perentesco:
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Parentesco: 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            	<select id="heard" class="form-control">
-			                      <option selected disabled>Seleccion el parentesco</option>
-			                      <option value="1">Amigo(a)</option>
-			                      <option value="2">Padre</option>
-			                      <option value="3">Tio(a)</option>
-			                      <option value="3">Primo(a)</option>
-			                      <option value="3">Veciono(a)</option>
-			                      <option value="3">Esposo(a) </option>
-			                      <option value="3">Abuelo(a) </option>
-			                      <option value="3">Suegro(a) </option>
-			                      <option value="3">Padrino/Madrina</option>
-			                      <option value="3">Hermano(a)</option>
-			                      <option value="3">Compañero de trabajo</option>
-			                      <option value="3">Cuñado(a)</option>
-			                      <option value="3">Hijo(a)</option>
-			                      <option value="3">Hijastro(a)</option>
-			                      <option value="3">Sobrino(a)</option>
-			                      <option value="3">Nieto(a)</option>
-			                      <option value="3">Nuero/Yerno</option>
-			                      <option value="3">Compadre/Comadre</option>
-			                      <option value="3">Madre</option>
-			                    </select>
+                               <select name="genero" id="parentesco" class="form-control" required>
+                                  <option selected disabled>Seleccion el parentesco</option>
+                                  <option value="1">Amigo(a)</option>
+                                  <option value="2">Padre</option>
+                                  <option value="3">Tio(a)</option>
+                                  <option value="4">Primo(a)</option>
+                                  <option value="5">Vecino(a)</option>
+                                  <option value="6">Esposo(a)</option>
+                                  <option value="7">Abuelo(a)</option>
+                                  <option value="8">Suegro(a)</option>
+                                  <option value="9">Padrino/Madrina</option>
+                                  <option value="10">Hermano(a)</option>
+                                  <option value="11">Compañero de trabajo</option>
+                                  <option value="12">Cuñado(a)</option>
+                                  <option value="13">Hijo(a)</option>
+                                  <option value="14">Hijastro(a)</option>
+                                  <option value="15">Sobrino(a)</option>
+                                  <option value="16">Nieto(a)</option>
+                                  <option value="17">Nuero/Yerno</option>
+                                  <option value="18">Compadre/Comadre</option>
+                                  <option value="19">Madre</option>
+                              </select> 
                             </div>
                           </div>
+                          
+                     
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono:
                             </label>
@@ -273,6 +275,7 @@ function valida(e){
 	
 						 <br>
 						 <br>
+             <div id="padre">
 						 <div align="center"><h2>DATOS DEL PADRE</h2></div>
 						  <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre Completo del padre: 
@@ -296,11 +299,14 @@ function valida(e){
                             <div class="col-md-6 col-sm-6 col-xs-12">
                               <input type="text" id="last-name" name="last-name" maxlength="8" minlength="8" onkeypress="return valida(event)" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
-                          </div>
-								<br>
-								<br>	
+                          </div>    
+                </div>
+
+                <br>
+                <br>
+                  <div id="madre"> 	
                           <div align="center"><h2>DATOS DE LA MADRE</h2></div>
-						  <div class="form-group">
+						              <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre Completo de la madre: 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -323,7 +329,7 @@ function valida(e){
                               <input type="text" id="last-name" name="last-name" maxlength="8" minlength="8" onkeypress="return valida(event)" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
- 						
+ 						    </div>
 
 
 
@@ -341,15 +347,16 @@ function valida(e){
 
 
 							
-						
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button class="btn btn-primary" type="button">Cancel</button>
-						  <button class="btn btn-primary" type="reset">Reset</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
-                        </div>
+						          <div align="center">
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                          <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">                      
+                             <button class="btn btn-primary" type="reset">Limpiar Formulario</button>
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                          </div>
+                        </div>    
                       </div>
+                    
 
                     </form>
 

@@ -1412,7 +1412,8 @@ table.display thead td:active {
 tfoot input {
     margin: 0.5em 0;
     width: 100%;
-    color: #444
+    color: #444;
+    border-radius: 20px;
 }
 tfoot input.search_init {
     color: #999
@@ -2170,7 +2171,7 @@ span.section {
     border-bottom: 1px solid #e5e5e5
 }
 .form-control {
-    border-radius: 0;
+    border-radius: 6px;
     width: 100%
 }
 .form-horizontal .control-label {
@@ -2336,7 +2337,7 @@ select.parsley-error {
     font-weight: bolder
 }
 .btn {
-    border-radius: 3px
+    border-radius: 5px
 }
 a.btn-success,
 a.btn-primary,
@@ -2345,15 +2346,17 @@ a.btn-danger {
     color: #fff
 }
 .btn-success {
-    background: #26B99A;
-    border: 1px solid #169F85
+    background: #34bd14;
+    border: 1px solid #34bd14;
 }
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active,
 .btn-success.active,
 .open .dropdown-toggle.btn-success {
-    background: #169F85
+    background: #44e21f;
+     border: 1px solid #34bd14;
+    
 }
 .btn-dark {
     color: #E9EDEF;

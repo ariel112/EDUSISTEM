@@ -106,4 +106,19 @@ $('#btnEmpty12').click(function(e){
 
 
 
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*codigo para validar el formulario de creacion de becario*/
+
+$('#parentesco').click(function () {
+	var $parentesco = $('#parentesco').val();
+	console.log('$parentesco ariel');
+
+
+
+});
+
+
+
 });
