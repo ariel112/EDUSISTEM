@@ -43,6 +43,16 @@ class UserController extends Controller
                     ON(a.id= b.id_depto) 
                     WHERE a.id is null
              ");
+
+            $sesiones = DB::select("
+                 SELECT B.name AS name, B.type AS type, A.created_at AS fecha 
+                    FROM historial_sesiones A
+                    LEFT JOIN users B 
+                    ON(A.users_id=B.id)                  
+                    WHERE B.id ='$id'
+                    ORDER BY fecha DESC
+                    ;
+             ");
       
             $carbon=Carbon::now();
             $depas =  DB::select("            
@@ -52,7 +62,7 @@ class UserController extends Controller
             ON(A.departamento_id_depto=B.id_depto)
             WHERE users_id ='$id' AND A.estado = 'Activo' ");
             $user = User::find($id);
-    return view("user/perfil")->with("user",$user)->with("depas",$depas)->with("carbon",$carbon)->with('depars',$depars);
+    return view("user/perfil")->with("user",$user)->with("depas",$depas)->with("carbon",$carbon)->with('depars',$depars)->with('sesiones',$sesiones);
                                }  
 
     /*Peticion ajac para desactivar los departamentos a los empleados*/ 

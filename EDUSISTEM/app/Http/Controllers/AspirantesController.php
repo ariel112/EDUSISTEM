@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\departamento;
+use DB;
+use Carbon\Carbon;
+
 
 class AspirantesController extends Controller
 {
@@ -32,7 +36,9 @@ class AspirantesController extends Controller
      */
     public function create()
     {
-        return view('aspirantes/create');   
+        $departamentos =  departamento::all();
+
+        return view('aspirantes/create')->with('departamentos',$departamentos);   
          }
 
     /**
@@ -43,7 +49,7 @@ class AspirantesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

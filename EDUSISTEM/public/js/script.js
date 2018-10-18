@@ -92,10 +92,8 @@ $('#btnEmpty12').click(function(e){
 	
    
    $.post(url,form1.serialize(), function(result){
-   	 $('#myCasa').modal('dispose');
-   	 $('body').removeClass('modal-open');
-     $('.modal-backdrop').remove();
-	
+   	 $('#myCasa').hide();   	 
+     $('.modal-backdrop').remove();	
    	 $('#alert').fadeIn().delay(1000).fadeOut();
    	 $('#alert').html(result.message);
    	 $('#cargo').html(seleccion);
@@ -105,8 +103,6 @@ $('#btnEmpty12').click(function(e){
 
 
 });
-
-
 
 
 

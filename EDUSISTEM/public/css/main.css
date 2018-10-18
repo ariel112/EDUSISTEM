@@ -11,9 +11,10 @@
 }
 
 .estudiante{
-   margin: 2px;
+    margin: 8px;
 	border: 1px solid #3690e8;
 	padding: 22px;
+	border-radius: 10PX;
 }
 
 .titulo-document{
@@ -21,4 +22,17 @@
 	margin: 0px;
 	background: #2681dc;
 	color: white;
+}
+
+.principal{
+	border: 1px solid #28a745;
+	border-radius: 10PX;
+	padding-left:8%;
+}
+
+
+/*aplico estilo a los wipzar*/
+
+.color-verde{
+	background: #39bb1a!important;
 }

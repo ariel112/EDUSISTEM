@@ -23,9 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('sidebar/sidebar');
+        return view('home');
     }
-
 
 
           

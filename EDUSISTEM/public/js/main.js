@@ -4,13 +4,18 @@ $(document).ready(function() {
 
 
 
+$('#btnEmpty').click(function(){
+
+	
+if($('#formEmpty').smkValidate())
+{
 
 
+ return true;
+ } else
+ { return false;} 
 
-
-
-
-
+});
 
 
 
