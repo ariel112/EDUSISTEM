@@ -62,18 +62,11 @@ function valida(e){
                     <br/>
 
 
-
-
-
-
-
-
-
-		            
                     
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
- 					
- 					   <div align="center"><h2>INFORMACIÓN DEL(LA) ESTUDIANTE</h2></div>	
+                
+ 			 {!! Form::open(['route' => 'aspirantes.store', 'method'=>'POST', 'files'=>true, 'id'=>'formEmpty','data-parsley-validate','class'=>'form-horizontal form-label-left']) !!}
+  		
+ 					   <div align="center"><h2>INFORMACIÓN DEL(LA) ESTUDIANTE </h2> </div>	
                       <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de identidad:
                             </label>
@@ -281,7 +274,7 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre Completo del padre: 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                               <input type="text" id="last-name" name="last-name" required="required" onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
+                               <input type="text" id="last-name" name="last-name"  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                        
@@ -289,7 +282,7 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No. Identidad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                             	  <input type="text" id="last-name" name="last-name" maxlength="13" minlength="13" onkeypress="return valida(event)" required="required" class="form-control col-md-7 col-xs-12">
+                             	  <input type="text" id="last-name" name="last-name" maxlength="13" minlength="13" onkeypress="return valida(event)"  class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                         
@@ -297,7 +290,7 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="last-name" name="last-name" maxlength="8" minlength="8" onkeypress="return valida(event)" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="last-name" name="last-name" maxlength="8" minlength="8" onkeypress="return valida(event)"  class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>    
                 </div>
@@ -310,7 +303,7 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre Completo de la madre: 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                               <input type="text" id="last-name" name="last-name" required="required" onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
+                               <input type="text" id="last-name" name="last-name"  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                        
@@ -318,7 +311,7 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No. Identidad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                             	  <input type="text" id="last-name" name="last-name" required="required" maxlength="13" minlength="13" onkeypress="return valida(event)" class="form-control col-md-7 col-xs-12">
+                             	  <input type="text" id="last-name" name="last-name"  maxlength="13" minlength="13" onkeypress="return valida(event)" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                         
@@ -326,7 +319,7 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="last-name" name="last-name" maxlength="8" minlength="8" onkeypress="return valida(event)" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="last-name" name="last-name" maxlength="8" minlength="8" onkeypress="return valida(event)"  class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
  						    </div>
@@ -352,13 +345,14 @@ function valida(e){
                         <div class="form-group">
                           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">                      
                              <button class="btn btn-primary" type="reset">Limpiar Formulario</button>
-                            <button type="submit" class="btn btn-success">Guardar</button>
+                               {!! Form::submit('Registrar',['class'=>'btn btn-info','id'=>'btnEmpty' ]) !!}
+                           
                           </div>
                         </div>    
                       </div>
                     
 
-                    </form>
+                  {{Form::close()}}
 
 
 
@@ -394,7 +388,9 @@ function valida(e){
 
 
 @section('script')
-	
+	    
+      <!--Este script es para las peticiones con ajax -->
+    <script src="{{ asset('js/script.js')}}"></script> 
 
     <script type="text/javascript" src="{{asset('template/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js')}}"></script>
     <!-- bootstrap-wysiwyg -->

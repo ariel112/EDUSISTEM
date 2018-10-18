@@ -113,8 +113,21 @@ $('#btnEmpty12').click(function(e){
 
 $('#parentesco').click(function () {
 	var $parentesco = $('#parentesco').val();
-	console.log('$parentesco ariel');
-
+	console.log($parentesco );
+   
+   if ($parentesco==2) {
+   	$('#padre').fadeOut('slow');
+   	$('#madre').fadeIn('slow');	
+   }
+   if($parentesco==19){
+   	$('#madre').fadeOut('slow');
+   	$('#padre').fadeIn('slow');
+   }
+   if($parentesco!=2 && $parentesco!=19){
+   		$('#padre').fadeIn('slow');
+   		$('#madre').fadeIn('slow');	
+   }
+   
 
 
 });
