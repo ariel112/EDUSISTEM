@@ -71,7 +71,7 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de identidad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return valida(event)" maxlength="13" minlength="13" >
+                              <input type="text" id="first-name" name="identidad" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return valida(event)" maxlength="13" minlength="13" >
                             </div>
                       </div>
 
@@ -79,14 +79,14 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre Completo: 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="last-name" name="last-name" required="required"  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="last-name" name="nombre_completo" required="required"  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Fecha de Nacimiento:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="date" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="date" id="last-name" name="fecha_nacimiento" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
