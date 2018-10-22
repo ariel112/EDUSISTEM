@@ -58,70 +58,76 @@ function valida(e){
                    
                     <div class="clearfix"></div>
                   </div>
-                  <div >
+                  <div class="fondo-beca" >
                     <br/>
 
 
                     
                 
- 			 {!! Form::open(['route' => 'aspirantes.store', 'method'=>'POST', 'files'=>true, 'id'=>'formEmpty','data-parsley-validate','class'=>'form-horizontal form-label-left']) !!}
+ 			 {!! Form::open(['route' => 'aspirantes.store', 'method'=>'POST', 'files'=>true, 'id'=>'formAspi','data-parsley-validate','class'=>'form-horizontal form-label-left']) !!}
   		
  					   <div align="center"><h2>INFORMACIÓN DEL(LA) ESTUDIANTE </h2> </div>	
-                      <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Numero de identidad:
+                    
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Numero de identidad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="first-name" name="identidad" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return valida(event)" maxlength="13" minlength="13" >
+                              <input type="text"  name="identidad" onkeypress="return valida(event)" maxlength="13" minlength="13" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
-                      </div>
+                          </div>
 
                        <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre Completo: 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="last-name" name="nombre_completo" required="required"  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
+                              <input type="text"  name="nombre_completo" required="required"  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Fecha de Nacimiento:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="date" id="last-name" name="fecha_nacimiento" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="date"  name="fecha_nacimiento" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
+                          
+
                           <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Departamento:</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">                                                         
-		                        <select name="genero" id="heard" class="form-control" required>
-		                          <option selected disabled >Seleccione un departamento </option>
-		                          <option value="1">Municipio</option>
-		                          <option value="2">municipio</option>
+		                
+                            <select name="departamento" id="departamentos" class="form-control" required>                              
+		                          <option selected disabled >Seleccione un departamento </option>                              
+                              @foreach($departamentos as $departamento)
+		                          <option value="{{$departamento->id_depto}}">{{$departamento->departamento}}</option>		                         
+                              @endforeach                              
 		                        </select> 
+                    
                             </div>
                           </div>
+
+  
                           <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Municipio:</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">                                                         
-		                        <select name="genero" id="heard" class="form-control" required>
-		                          <option selected disabled >Seleccione un municipio </option>
-		                          <option value="1">Municipio</option>
-		                          <option value="2">municipio</option>
+		                        <select name="id_municipio" id="municipio" class="form-control" required>
+                                 <option selected disabled >Seleccione un municipio </option>      
 		                        </select> 
                             </div>
                           </div>
 
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ciudad:
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Ciudad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12" >
-                              <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return soloLetras(event)">
+                              <input type="text"  name="ciudad" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return soloLetras(event)">
                             </div>
                           </div>
 
                           <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Genero:</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">                                                         
-		                        <select name="genero" id="heard" class="form-control" required>
+		                        <select name="genero"  class="form-control" required>
 		                          <option selected disabled >Seleccion el genero:</option>
 		                          <option value="1">Masculino</option>
 		                          <option value="2">Femenino</option>
@@ -133,7 +139,7 @@ function valida(e){
                           <br>
                           <br>
                           <div align="center"><h2>CENTRO UNIVERSITARIO</h2></div>
-
+                          <!--
 							             <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nivel Educativo: <span class="required">*</span>
                             </label>
@@ -145,94 +151,93 @@ function valida(e){
 		                          <option value="3">Universidad</option>
 		                        </select> 
                             </div>
-                          </div>
+                          </div>  
+                        -->
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Universidad:<span class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Universidad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select id="heard" class="form-control">
-		                      <option selected>Seleccion la universidad</option>
-		                      <option value="1">UNIVERSIDAD NACIONAL AUTONOMA DE HONDURAS (UNAH)</option>
-		                      <option value="2">UNIVERSIDAD METROPOLITANA DE HONDURAS (UMH)</option>
-		                      <option value="3">UNIVERSIDAD CRISTIANA DE HONDURAS (UCRISH)</option>
-		                      <option value="3">UNIVERSIDAD TECNOLOGICA (UNITEC) (CEUTEC)</option>
-		                      <option value="3">UNIVERSIDAD NACIONAL DE AGRICULTURA (UNAG) </option>
-		                      <option value="3">UNIVERSIDAD POLITECNICA DE HONDURAS (POLITECNICA) </option>
-		                      <option value="3">UNIVERSIDAD TECNOLOGICA DE HONDURAS (UTH) </option>
-		                      <option value="3">UNIVERSIDAD CRISTIANA EVANGELICA NUEVO MILENIO (UCENM) </option>
-		                      <option value="3">CENTRO DE DISEÑO, ARQUITECTURA Y CONSTRUCCIÓN (CEDAC)</option>
-		                      <option value="3">UNIVERSIDAD CATÓLICA DE HONDURAS (UNICAH) </option>
-		                      <option value="3">UNIVERSIDAD JESÚS DE NAZARETH (UJN) </option>
-		                      <option value="3">UNIVERSIDAD DE SAN PEDRO SULA (USAP) </option>
-		                      <option value="3">UNIVERSIDAD PEDAGÓGICA NACIONAL FRANCISCO MORAZÁN (UPNFM) </option>
-		                    </select>
+                            <select id="universidad" class="form-control" required>
+		                      <option selected disabled>Seleccion la universidad</option>
+                              @foreach($universidades as $universidad)
+                              <option value="{{$universidad->id}}">{{$universidad->nombre}}</option>                             
+                              @endforeach    
+		                      </select>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Campus
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Campus
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select  id="heard" class="form-control">
-			                      <option selected>Seleccion el campus:</option>
-			                      <option value="1">One</option>
-			                      <option value="2">Two</option>
-			                      <option value="3">Three</option>
+                                <select  id="campus" class="form-control" required>
+			                      <option selected disabled>Seleccion un campus</option>		                      
 			                    </select>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Carrera:
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Facultad
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            	<input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                                <select  id="facultad" class="form-control" required>
+                            <option selected disabled>Seleccione la facultad</option>                          
+                          </select>
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Cuenta Universitaria:
+                         <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Carrera
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="last-name" name="last-name" onkeypress="return soloLetras(event)" required="required" class="form-control col-md-7 col-xs-12">
+                                <select  id="carrera" name="carrera_id" class="form-control" required>
+                            <option selected disabled>Seleccione la carrera</option>                          
+                          </select>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Indice del Periodo:
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Cuenta Universitaria:
                             </label>
-                            <div class="col-md-3 col-sm-3 col-xs-3">
-                              <input type="text" id="last-name" name="last-name" required="required" onkeypress="return valida(event)" class="form-control col-md-3 col-xs-3">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text"  name="cuenta" onkeypress="return valida(event)" maxlength="11" minlength="11" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Indice Global:
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Indice del Periodo:
                             </label>
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                              <input type="text" id="last-name" name="last-name" required="required" onkeypress="return valida(event)" class="form-control col-md-3 col-xs-3">
+                              <input type="text"  name="indice_periodo" required="required" maxlength="2" minlength="2" onkeypress="return valida(event)" class="form-control col-md-3 col-xs-3">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Indice Global:
+                            </label>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                              <input type="text"  name="indice_global" required="required" maxlength="2" minlength="2" onkeypress="return valida(event)" class="form-control col-md-3 col-xs-3">
                             </div>
                           </div>
 						
-						 <br>
+						              <br>
                           <br>
                           <div align="center"><h2>PERSONA DEPENDIENTE</h2></div>
 						 
                          <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre Completo: 
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Nombre Completo: 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                               <input type="text" id="last-name" name="last-name" onkeypress="return soloLetras(event)" required="required" class="form-control col-md-7 col-xs-12">
+                               <input type="text"  name="nombre_dependiente" onkeypress="return soloLetras(event)" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                        
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No. Identidad:
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >No. Identidad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                             	  <input type="text" id="last-name" name="last-name" maxlength="13" minlength="13" onkeypress="return valida(event)" required="required" class="form-control col-md-7 col-xs-12">
+                             	  <input type="text"  name="id_dependiente" maxlength="13" minlength="13" onkeypress="return valida(event)" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Parentesco: 
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Parentesco: 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                               <select name="genero" id="parentesco" class="form-control" required>
+                               <select name="parentesco" id="parentesco" class="form-control" required>
                                   <option selected disabled>Seleccion el parentesco</option>
                                   <option value="1">Amigo(a)</option>
                                   <option value="2">Padre</option>
@@ -259,10 +264,10 @@ function valida(e){
                           
                      
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono:
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Telefono:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="last-name" name="last-name" required="required" maxlength="8" minlength="8" onkeypress="return valida(event)" class="form-control col-md-7 col-xs-12">
+                              <input type="text"  name="telefono_dependiente" required="required" maxlength="8" minlength="8" onkeypress="return valida(event)" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
 	
@@ -271,111 +276,76 @@ function valida(e){
              <div id="padre">
 						 <div align="center"><h2>DATOS DEL PADRE</h2></div>
 						  <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre Completo del padre: 
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Nombre Completo del padre: 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                               <input type="text" id="last-name" name="last-name"  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
+                               <input type="text"  name="nombre_padre"  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                        
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No. Identidad:
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >No. Identidad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                             	  <input type="text" id="last-name" name="last-name" maxlength="13" minlength="13" onkeypress="return valida(event)"  class="form-control col-md-7 col-xs-12">
+                             	  <input type="text"  name="id_padre" maxlength="13" minlength="13" onkeypress="return valida(event)"  class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                         
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono:
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Telefono:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="last-name" name="last-name" maxlength="8" minlength="8" onkeypress="return valida(event)"  class="form-control col-md-7 col-xs-12">
+                              <input type="text" name="telefono_padre" maxlength="8" minlength="8" onkeypress="return valida(event)"  class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>    
                 </div>
 
                 <br>
                 <br>
-                  <div id="madre"> 	
+                <div id="madre"> 	
                           <div align="center"><h2>DATOS DE LA MADRE</h2></div>
 						              <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre Completo de la madre: 
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre Completo de la madre: 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                               <input type="text" id="last-name" name="last-name"  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
+                               <input type="text"  name="nombre_madre"  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                        
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">No. Identidad:
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >No. Identidad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                             	  <input type="text" id="last-name" name="last-name"  maxlength="13" minlength="13" onkeypress="return valida(event)" class="form-control col-md-7 col-xs-12">
+                             	  <input type="text"  name="id_madre"  maxlength="13" minlength="13" onkeypress="return valida(event)" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                         
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Telefono:
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Telefono:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="last-name" name="last-name" maxlength="8" minlength="8" onkeypress="return valida(event)"  class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="telefono_madre" name="telefono_madre" maxlength="8" minlength="8" onkeypress="return valida(event)"  class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
  						    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 							
 						          <div align="center">
                         <div class="ln_solid"></div>
                         <div class="form-group">
                           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">                      
                              <button class="btn btn-primary" type="reset">Limpiar Formulario</button>
-                               {!! Form::submit('Registrar',['class'=>'btn btn-info','id'=>'btnEmpty' ]) !!}
+                               {!! Form::submit('Registrar',['class'=>'btn btn-success','id'=>'btnEmpty' ]) !!}
                            
                           </div>
                         </div>    
                       </div>
                     
-
                   {{Form::close()}}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                   </div>
                 </div>
               </div>
             </div>
-
-      
-            
-
-         
         </div>
         <!-- /page content -->
 
@@ -385,21 +355,17 @@ function valida(e){
 @endsection
 
 
-
-
 @section('script')
+
+
 	    
-      <!--Este script es para las peticiones con ajax -->
+    <!--Este script es para las peticiones con ajax -->
     <script src="{{ asset('js/script.js')}}"></script> 
 
     <script type="text/javascript" src="{{asset('template/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js')}}"></script>
     <!-- bootstrap-wysiwyg -->
-
-    <script type="text/javascript" src="{{asset('template/vendors/jquery.hotkeys/jquery.hotkeys.js')}}"></script>
- 
-    <script type="text/javascript" src="{{asset('template/vendors/google-code-prettify/src/prettify.js')}}"></script>
- 
-    
+    <script type="text/javascript" src="{{asset('template/vendors/jquery.hotkeys/jquery.hotkeys.js')}}"></script> 
+    <script type="text/javascript" src="{{asset('template/vendors/google-code-prettify/src/prettify.js')}}"></script>    
     <!-- jQuery Tags Input -->
     <script type="text/javascript" src="{{asset('template/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
 
@@ -407,22 +373,16 @@ function valida(e){
 
     <!-- Switchery -->
     <script type="text/javascript" src="{{asset('template/vendors/switchery/dist/switchery.min.js')}}"></script>
-
     <!-- Select2 -->
     <script type="text/javascript" src="{{asset('template/vendors/select2/dist/js/select2.full.min.js')}}"></script>
-
     <!-- Parsley -->
     <script type="text/javascript" src="{{asset('template/vendors/parsleyjs/dist/parsley.js')}}"></script>
-
     <!-- Autosize -->
-    <script type="text/javascript" src="{{asset('template/vendors/autosize/dist/autosize.min.js')}}"></script>
-   
+    <script type="text/javascript" src="{{asset('template/vendors/autosize/dist/autosize.min.js')}}"></script>   
     <!-- jQuery autocomplete -->
     <script type="text/javascript" src="{{asset('template/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js')}}"></script>
-
     <!-- starrr -->
-    <script type="text/javascript" src="{{asset('template/vendors/starrr/dist/starrr.js')}}"></script>
- 
+    <script type="text/javascript" src="{{asset('template/vendors/starrr/dist/starrr.js')}}"></script> 
     
 
 @endsection

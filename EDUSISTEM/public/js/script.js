@@ -132,6 +132,119 @@ $('#parentesco').click(function () {
 
 });
 
+/*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/*codigo para validar la dependencia de los municipios*/
+
+$('#departamentos').change(function(event) {
+   var id = event.target.value;
+   onselector(id); 
+});
+
+/*codigo para ver las campus*/
+$('#universidad').change(function(event) {
+   var id = event.target.value;
+   oncampus(id); 
+});
+
+
+/*codigo para ver las facultades*/
+$('#campus').change(function(event) {
+   var id = event.target.value;
+   onfacultad(id); 
+});
+
+/*codigo para ver las carreras*/
+$('#facultad').change(function(event) {
+   var id = event.target.value;
+   oncarreras(id); 
+});
+
+
 
 
 });
+
+/*termina el document ready*/
+
+
+/*busca el municipio asociado con el departamento*/
+function onselector(id){ 
+ 
+ if(!id){
+  $('#muncipio').attr('disabled', 'disabled');
+ }
+  //AJAX
+  $.get('/api/proyecto/'+id+'/niveles', function(data){
+    var html_select =' <option selected disabled >Seleccione un municipio </option>';
+    for (var i=0; i<data.length; ++i)
+      html_select += '<option value="'+data[i].id_municipio+'">'+data[i].municipio +'</option>'
+     
+      $('#municipio').html(html_select);
+  });
+
+
+}
+
+
+
+/*busca el ccampus asociado con la universidad*/
+function oncampus(id){ 
+  console.log(id);
+ 
+ if(!id){
+
+ }
+  //AJAX
+  $.get('/api/campus/'+id+'/universidades', function(data){
+    var html_select1 =' <option selected disabled >Seleccione un campus </option>';
+    for (var i=0; i<data.length; ++i)
+      html_select1 += '<option value="'+data[i].id+'">'+data[i].nombre +'</option>'
+     
+      $('#campus').html(html_select1);
+  });
+
+
+}
+
+
+
+/*busca la facultad asociada con el campus*/
+function onfacultad(id){ 
+  console.log(id);
+ 
+ if(!id){
+
+ }
+  //AJAX
+  $.get('/api/facultads/'+id+'/campus', function(data){
+    var html_select1 =' <option selected disabled >Seleccione la facultad </option>';
+    for (var i=0; i<data.length; ++i)
+      html_select1 += '<option value="'+data[i].id+'">'+data[i].nombre +'</option>'
+     
+      $('#facultad').html(html_select1);
+  });
+
+
+}
+
+
+/*busca las carreras asociadas ala facultad*/
+function oncarreras(id){ 
+  console.log(id);
+ 
+ if(!id){
+
+ }
+  //AJAX
+  $.get('/api/carreras/'+id+'/facultads', function(data){
+    var html_select1 =' <option selected disabled >Seleccione la carrera </option>';
+    for (var i=0; i<data.length; ++i)
+      html_select1 += '<option value="'+data[i].id+'">'+data[i].nombre +'</option>'
+     
+      $('#carrera').html(html_select1);
+  });
+
+
+}

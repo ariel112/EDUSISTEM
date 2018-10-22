@@ -36,3 +36,56 @@
 .color-verde{
 	background: #39bb1a!important;
 }
+
+.fondo-beca{
+	background-image: url(../img/fondo-beca2.png);
+	position: relative;
+
+	background-repeat: no-repeat;
+}
+
+#imagen-perfil{
+	border-radius: 50%;
+	width: 200px ;
+	height: 200px;
+}
+
+	#camara-cel{
+		display: none;
+	}
+
+/*Resolucion de la pantalla del iphone*/
+@media screen and (max-width: 540px){
+
+
+	/*oculta los botones para la camara*/
+	#camara-pc{
+		display: none;
+	}
+	#camara-cel{
+		display: block;
+	}
+}
+
+
+.alinear{
+	text-align: center;
+}
+
+.tarjeta-perfil{
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	width: 100%;
+}
+.imagen-aspirante{
+	height: 200px;
+	width: 200px;
+	margin-top: 12px;
+}
+
+.footer-aspirantes{
+	text-align: center;
+	background:  #F2F5F7;
+
+
+}

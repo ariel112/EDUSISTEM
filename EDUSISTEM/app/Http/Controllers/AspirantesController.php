@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\departamento;
 use DB;
 use Carbon\Carbon;
+use App\Municipios;
+use App\Universidad;
+use App\Campus;
+use App\Facultad;
+use App\Carreras;
 
 
 class AspirantesController extends Controller
@@ -37,8 +42,9 @@ class AspirantesController extends Controller
     public function create()
     {
         $departamentos =  departamento::all();
-
-        return view('aspirantes/create')->with('departamentos',$departamentos);   
+        $universidades = Universidad::all();
+      
+        return view('aspirantes/create')->with('departamentos',$departamentos)->with('universidades',$universidades);   
          }
 
     /**
@@ -83,7 +89,7 @@ class AspirantesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -96,4 +102,38 @@ class AspirantesController extends Controller
     {
         //
     }
+/*
+    public function getMunicipios(Request $request, $id){
+        
+
+        if($request->ajax()){
+            $municipios = Municipios::municipios($id);
+            return Response()->json($municipios);
+        }
+        
+    }
+
+    */
+    /*me carga los municipios*/
+    public function bydepa($id){
+        return Municipios::where('id_depto',$id)->get();
+    }
+
+    /*Me carga los campus de las universidades*/
+    public function bycampus($id){
+        return Campus::where('universidad_id',$id)->get();
+    }
+
+    /*Me carga las facultades*/ 
+    public function byfacultads($id){
+        return Facultad::where('campus_id',$id)->get();
+    }
+
+    /*Me carga las carreras*/ 
+    public function bycarreras($id){
+        return Carreras::where('facultad_id',$id)->get();
+    }
+
+
+
 }
