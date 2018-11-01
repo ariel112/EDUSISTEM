@@ -1,7 +1,7 @@
 @extends('sidebar.sidebar')
 
 @section('link')
- 
+ <link rel="stylesheet" type="text/css" href="{{asset('Semantic/semantic.min.css')}}">
 
 
 
@@ -33,7 +33,7 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img class="img-responsive avatar-view" src="{{asset('template/production/images/picture.jpg')}}" alt="Avatar" title="Change the avatar">
+                          <img class="img-responsive avatar-view" src="{{asset('images/user.png')}}" alt="Avatar" title="Change the avatar">
                         </div>
                       </div>
                       <h3 class="text-capitalize">{{ $user->name }}</h3>
@@ -83,69 +83,86 @@
                         <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                           <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Actividades recientes</a>
                           </li>
-                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Historial de inicio de sesiones</a>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Historial de acciones en el sistema</a>
                           </li>                        
                         </ul>
                         <div id="myTabContent" class="tab-content">
                           <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                             <!-- start recent activity -->
-                            <ul class="messages">
-                              <li>
-                                <img src="{{asset('template/production/images/img.jpg')}}" class="avatar" alt="Avatar">
-                                <div class="message_date">
-                                  <h3 class="date text-info">24</h3>
-                                  <p class="month">May</p>
-                                </div>
-                                <div class="message_wrapper">
-                                  <h4 class="heading">Edito al becario</h4>
-                                  <blockquote class="message">beacrio .</blockquote>
-                                  <br />
-                              
-                                </div>
-                              </li>
-                              <li>
-                                <img src="{{asset('template/production/images/img.jpg')}}" class="avatar" alt="Avatar">
-                                <div class="message_date">
-                                  <h3 class="date text-error">21</h3>
-                                  <p class="month">May</p>
-                                </div>
-                                <div class="message_wrapper">
-                                  <h4 class="heading">Guardo inforamcion del becario</h4>
-                                  <blockquote class="message">becario</blockquote>
-                                  <br />
-                                                              </div>
-                              </li>
-                              <li>
-                                <img src="{{asset('template/production/images/img.jpg')}}" class="avatar" alt="Avatar">
-                                <div class="message_date">
-                                  <h3 class="date text-info">24</h3>
-                                  <p class="month">May</p>
-                                </div>
-                                <div class="message_wrapper">
-                                  <h4 class="heading">Actulizo datos</h4>
-                                  <blockquote class="message">universitario</blockquote>
-                                  <br/>                               
-                                </div>
-                              </li>                              
-                            </ul>
+                              <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                              <tr>                            
+                              <th>Accion</th>
+                                           
+                              </tr>
+                            </thead>
+                            <tbody>
+                               @foreach ($acciones as $accion)         
+                                      <tr>                                  
+                                          <td> 
+                                              <div class="ui feed">
+
+                                                <div class="event">
+                                                  <div class="label">
+                                                    <img src="{{asset('images/user.png')}}">
+                                                  </div>
+                                                  <div class="content">
+                                                    <div class="summary">
+                                                      <a class="user" class="text-capitalize">
+                                                        {{$accion->nombre}} &nbsp;
+                                                      </a> <font style="color:{{$accion->color}}; ">{{$accion->accion}}</font>&nbsp;&nbsp;
+                                                       <font style="color: gray;">{{$accion->beca}}</font>
+                                                      <div class="date">
+                                                        {{$accion->fecha}}
+                                                      </div>
+                                                    </div>
+                                                 
+                                                  </div>
+                                                </div>                                                
+                                              </div>
+                                          </td>
+                                                     
+                                      </tr>                                     
+                              @endforeach    
+                            </tbody>
+                          </table>
                             <!-- end recent activity -->
                           </div>
-                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                          <div role="tabpanel2" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                           <table id="datatable" class="table table-striped table-bordered">
                             <thead>
                               <tr>                            
-                              <th>Nombre</th>
-                              <th>Cargo</th>                                        
-                              <th>Fecha </th>                
+                              <th>Sesiones en el sistema</th>
+                                            
                               </tr>
                             </thead>
                             <tbody>
                                @foreach ($sesiones as $sesion)         
-                                      <tr>                                  
-                                          <td>{{$sesion->name}}</td>
-                                          <td>{{$sesion->type}}</td>
-                                          <td>{{$sesion->fecha}}</td>             
+                                      <tr>                                        
+                                       
+                                          <td>
+                                            <div class="ui feed">
+                                                <div class="event">
+                                                  <div class="label">
+                                                    <img src="{{asset('images/user.png')}}">
+                                                  </div>
+                                                  <div class="content">
+                                                    <div class="summary">
+                                                      <a class="user" class="text-capitalize">
+                                                        {{$sesion->name}} &nbsp;
+                                                      </a> <font style="color:blue; ">{{$sesion->type}}</font>&nbsp;&nbsp;
+                                                       
+                                                      <div class="date">
+                                                        {{$sesion->fecha}}
+                                                      </div>
+                                                    </div>
+                                                 
+                                                  </div>
+                                                </div>                                                
+                                              </div>
+                                          </td>    
+                                                   
                                       </tr>                                     
                               @endforeach    
                             </tbody>
@@ -247,6 +264,7 @@
         </div>
       </div>
     </div>
+
 
 @endsection
 

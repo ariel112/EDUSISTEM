@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+
+
 $('#alert').hide();
 $('#alertw').hide();
 
@@ -113,17 +116,17 @@ $('#btnEmpty12').click(function(e){
 
 $('#parentesco').click(function () {
 	var $parentesco = $('#parentesco').val();
-	console.log($parentesco );
+
    
-   if ($parentesco==2) {
+   if ($parentesco=='Padre') {
    	$('#padre').fadeOut('slow');
    	$('#madre').fadeIn('slow');	
    }
-   if($parentesco==19){
+   if($parentesco=='Madre'){
    	$('#madre').fadeOut('slow');
    	$('#padre').fadeIn('slow');
    }
-   if($parentesco!=2 && $parentesco!=19){
+   if($parentesco!='Padre' && $parentesco!='Madre'){
    		$('#padre').fadeIn('slow');
    		$('#madre').fadeIn('slow');	
    }
@@ -161,6 +164,11 @@ $('#facultad').change(function(event) {
    oncarreras(id); 
 });
 
+/*codigo para ver los periodos por universidad*/
+$('#universidad').change(function(event) {
+   var id = event.target.value;
+   onperiodo(id); 
+});
 
 
 
@@ -191,7 +199,7 @@ function onselector(id){
 
 /*busca el ccampus asociado con la universidad*/
 function oncampus(id){ 
-  console.log(id);
+ 
  
  if(!id){
 
@@ -212,7 +220,7 @@ function oncampus(id){
 
 /*busca la facultad asociada con el campus*/
 function onfacultad(id){ 
-  console.log(id);
+
  
  if(!id){
 
@@ -232,7 +240,7 @@ function onfacultad(id){
 
 /*busca las carreras asociadas ala facultad*/
 function oncarreras(id){ 
-  console.log(id);
+
  
  if(!id){
 
@@ -244,6 +252,25 @@ function oncarreras(id){
       html_select1 += '<option value="'+data[i].id+'">'+data[i].nombre +'</option>'
      
       $('#carrera').html(html_select1);
+  });
+
+
+}
+
+/*busca las carreras asociadas ala facultad*/
+function onperiodo(id){ 
+
+ 
+ if(!id){
+
+ } 
+  //AJAX
+  $.get('/api/periodos/'+id+'/university', function(data){
+    var html_select1 =' <option selected disabled >Seleccione un periodo </option>';
+    for (var i=0; i<data.length; ++i)
+      html_select1 += '<option value="'+data[i].nombre+'">'+data[i].nombre +'</option>'
+     
+      $('#periodo').html(html_select1);
   });
 
 

@@ -31,6 +31,20 @@ class UserController extends Controller
     /**/
     public function perfil($id){
 
+            $acciones = DB::select("
+              SELECT B.name AS nombre, B.type as type, B.email as email,A.created_at as fecha, C.nombre as accion,E.nombre AS beca, D.color AS color
+                FROM users_has_becas A
+                INNER JOIN users B
+                ON(A.users_id=B.id)
+                INNER JOIN tipo_accion c
+                on(A.tipo_accion_id=C.id)
+                INNER JOIN color D 
+                ON(C.color_id=D.id)
+                INNER JOIN becas E
+                ON(A.becas_id=E.id)
+                WHERE B.id='$id';
+          
+             ");
             $depars =  DB::select("                
                 SELECT B.id_depto AS id_depto , b.departamento as departamento
                     FROM(
@@ -62,7 +76,7 @@ class UserController extends Controller
             ON(A.departamento_id_depto=B.id_depto)
             WHERE users_id ='$id' AND A.estado = 'Activo' ");
             $user = User::find($id);
-    return view("user/perfil")->with("user",$user)->with("depas",$depas)->with("carbon",$carbon)->with('depars',$depars)->with('sesiones',$sesiones);
+    return view("user/perfil")->with("user",$user)->with("depas",$depas)->with("carbon",$carbon)->with('depars',$depars)->with('sesiones',$sesiones)->with('acciones',$acciones);
                                }  
 
     /*Peticion ajac para desactivar los departamentos a los empleados*/ 
@@ -174,4 +188,6 @@ class UserController extends Controller
     {
         //
     }
+
+   
 }

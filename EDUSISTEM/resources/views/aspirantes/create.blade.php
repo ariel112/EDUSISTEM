@@ -80,23 +80,44 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nombre Completo: 
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  name="nombre_completo" required="required"  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
+                              <input type="text"  name="nombre_completo" required  onkeypress="return soloLetras(event)" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Fecha de Nacimiento:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="date"  name="fecha_nacimiento" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="date"  name="fecha_nacimiento" required class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
+
+                           <div class="form-group">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Estado civil:</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">                                                         
+                    
+                            <select name="estado_civil" id="estado_civil" class="form-control"  required>                              
+                              <option selected disabled >Seleccione el estado civil </option>                              
+                              @foreach($estado_civils as $estado_civil)
+                              <option value="{{$estado_civil->id_estado_civil}}">{{$estado_civil->estado_civil}}</option>                             
+                              @endforeach                              
+                            </select>                    
+                            </div>
+                          </div>
+
+                           <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >Telefono:
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input type="text" name="telefono_aspirante" maxlength="8" minlength="8" required  onkeypress="return valida(event)"  class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div> 
                           
 
                           <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Departamento:</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">                                                         
 		                
-                            <select name="departamento" id="departamentos" class="form-control" required>                              
+                            <select name="departamento" id="departamentos" required class="form-control" >                              
 		                          <option selected disabled >Seleccione un departamento </option>                              
                               @foreach($departamentos as $departamento)
 		                          <option value="{{$departamento->id_depto}}">{{$departamento->departamento}}</option>		                         
@@ -110,7 +131,7 @@ function valida(e){
                           <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Municipio:</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">                                                         
-		                        <select name="id_municipio" id="municipio" class="form-control" required>
+		                        <select name="id_municipio" id="municipio" required class="form-control" >
                                  <option selected disabled >Seleccione un municipio </option>      
 		                        </select> 
                             </div>
@@ -120,14 +141,14 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Ciudad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12" >
-                              <input type="text"  name="ciudad" required="required" class="form-control col-md-7 col-xs-12" onkeypress="return soloLetras(event)">
+                              <input type="text"  name="ciudad" required class="form-control col-md-7 col-xs-12" onkeypress="return soloLetras(event)">
                             </div>
                           </div>
 
                           <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Genero:</label>
                             <div class="col-md-6 col-sm-6 col-xs-12">                                                         
-		                        <select name="genero"  class="form-control" required>
+		                        <select name="id_genero" required class="form-control" >
 		                          <option selected disabled >Seleccion el genero:</option>
 		                          <option value="1">Masculino</option>
 		                          <option value="2">Femenino</option>
@@ -157,7 +178,7 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Universidad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select id="universidad" class="form-control" required>
+                            <select id="universidad" class="form-control"  required  >
 		                      <option selected disabled>Seleccion la universidad</option>
                               @foreach($universidades as $universidad)
                               <option value="{{$universidad->id}}">{{$universidad->nombre}}</option>                             
@@ -169,7 +190,7 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" >Campus
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select  id="campus" class="form-control" required>
+                                <select  id="campus" class="form-control"  required >
 			                      <option selected disabled>Seleccion un campus</option>		                      
 			                    </select>
                             </div>
@@ -178,7 +199,7 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" >Facultad
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select  id="facultad" class="form-control" required>
+                                <select  id="facultad" class="form-control"  required >
                             <option selected disabled>Seleccione la facultad</option>                          
                           </select>
                             </div>
@@ -187,7 +208,7 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" >Carrera
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select  id="carrera" name="carrera_id" class="form-control" required>
+                                <select  id="carrera" name="carrera_id" class="form-control"  required >
                             <option selected disabled>Seleccione la carrera</option>                          
                           </select>
                             </div>
@@ -196,21 +217,34 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" >Cuenta Universitaria:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  name="cuenta" onkeypress="return valida(event)" maxlength="11" minlength="11" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text"  name="cuenta_universitaria" required  onkeypress="return valida(event)" maxlength="11" minlength="11"  class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" >Indice del Periodo:
                             </label>
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                              <input type="text"  name="indice_periodo" required="required" maxlength="2" minlength="2" onkeypress="return valida(event)" class="form-control col-md-3 col-xs-3">
+                              <input type="text"  name="indice_periodo" required maxlength="2" minlength="2" onkeypress="return valida(event)" class="form-control col-md-3 col-xs-3">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" >Indice Global:
                             </label>
                             <div class="col-md-3 col-sm-3 col-xs-3">
-                              <input type="text"  name="indice_global" required="required" maxlength="2" minlength="2" onkeypress="return valida(event)" class="form-control col-md-3 col-xs-3">
+                              <input type="text"  name="indice_global" required maxlength="2" minlength="2" onkeypress="return valida(event)" class="form-control col-md-3 col-xs-3">
+                            </div>
+                          </div>
+                            <div class="form-group">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Seleccione:</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">                                                         
+                    
+                            <select name="becas_id" id="beca" class="form-control" required>                              
+                              <option selected disabled >Seleccione la beca </option>                              
+                              @foreach($becas as $beca)
+                              <option value="{{$beca->id}}">{{$beca->nombre}}</option>                             
+                              @endforeach                              
+                            </select> 
+                    
                             </div>
                           </div>
 						
@@ -239,25 +273,25 @@ function valida(e){
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                <select name="parentesco" id="parentesco" class="form-control" required>
                                   <option selected disabled>Seleccion el parentesco</option>
-                                  <option value="1">Amigo(a)</option>
-                                  <option value="2">Padre</option>
-                                  <option value="3">Tio(a)</option>
-                                  <option value="4">Primo(a)</option>
-                                  <option value="5">Vecino(a)</option>
-                                  <option value="6">Esposo(a)</option>
-                                  <option value="7">Abuelo(a)</option>
-                                  <option value="8">Suegro(a)</option>
-                                  <option value="9">Padrino/Madrina</option>
-                                  <option value="10">Hermano(a)</option>
-                                  <option value="11">Compañero de trabajo</option>
-                                  <option value="12">Cuñado(a)</option>
-                                  <option value="13">Hijo(a)</option>
-                                  <option value="14">Hijastro(a)</option>
-                                  <option value="15">Sobrino(a)</option>
-                                  <option value="16">Nieto(a)</option>
-                                  <option value="17">Nuero/Yerno</option>
-                                  <option value="18">Compadre/Comadre</option>
-                                  <option value="19">Madre</option>
+                                  <option value="Amigo(a)">Amigo(a)</option>
+                                  <option value="Padre">Padre</option>
+                                  <option value="Tio(a)">Tio(a)</option>
+                                  <option value="Primo(a)">Primo(a)</option>
+                                  <option value="Vecino(a)">Vecino(a)</option>
+                                  <option value="Esposo(a)">Esposo(a)</option>
+                                  <option value="Abuelo(a)">Abuelo(a)</option>
+                                  <option value="Suegro(a)">Suegro(a)</option>
+                                  <option value="Padrino/Madrina">Padrino/Madrina</option>
+                                  <option value="Hermano(a)">Hermano(a)</option>
+                                  <option value="Compañero de trabajo">Compañero de trabajo</option>
+                                  <option value="Cuñado(a)">Cuñado(a)</option>
+                                  <option value="Hijo(a)">Hijo(a)</option>
+                                  <option value="Hijastro(a)">Hijastro(a)</option>
+                                  <option value="Sobrino(a)">Sobrino(a)</option>
+                                  <option value="Nieto(a)">Nieto(a)</option>
+                                  <option value="Nuero/Yerno">Nuero/Yerno</option>
+                                  <option value="Compadre/Comadre">Compadre/Comadre</option>
+                                  <option value="Madre">Madre</option>
                               </select> 
                             </div>
                           </div>

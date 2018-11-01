@@ -89,3 +89,18 @@
 
 
 }
+
+
+.color-negro{
+	color: black;
+}
+
+.tablas{
+	border-color: blue;
+	border-radius: 20px;
+}
+
+.color-tablas{
+	background: #337ab7;
+	color: white;
+}

@@ -30,6 +30,12 @@ Route::get('admin/perfil/{id}',
                         'uses'=>'UserController@perfil'
                        ]);
 
+/*ruta para las acciones en el sistema*/
+Route::get('sistema/acciones',[ 
+                'as'=>'admin.bitacora',
+                 'uses'=> 'ConvenioController@bitacora'
+                  ]);
+
 
 /*Ruta para cambiar los estados de los departamentos de lo usuarios*/
 Route::POST('/editar-estado/{id}','UserController@estado')->name('editar-estado');
@@ -73,3 +79,46 @@ Route::get('CalendarioGlobal',[
                 'as'=>'calendario.academico',
                  'uses'=> 'CalendarioController@calendario'
                   ]);
+/*perfil de la suniversidadess*/
+Route::get('perfil/universidad/{id}',[ 
+                'as'=>'universidad.perfil',
+                 'uses'=> 'CalendarioController@perfil'
+                  ]);
+/*Convenios controller*/
+Route::resource('universidad/convenio','ConvenioController');
+
+
+/*Becas*/
+Route::resource('universidad/becas','BecaController');
+
+
+/*Ruta para la actualizacion de documentos*/
+Route::resource('becario/actualizacion','ActualizacionController');
+/*Obtener los perfiles de los usuarios para acutalizar*/
+Route::get('becarios/actualizacion/ver/{id}',
+                       [
+                        'as'=>'actualizacion.perfil',
+                        'uses'=>'ActualizacionController@perfil'
+                       ]);
+
+/*Ruta para obtener los mese que se pueden pagar en una universidad*/
+Route::resource('pagos/universidad/meses','PagoMesesController');
+/*RUta para ver los perfiles de meses que se pueden pagar segun univerisad*/
+/*Obtener los perfiles de los usuarios*/
+Route::get('pagos/universidad/meses/perfil/{id}',
+                       [
+                        'as'=>'meses.perfil',
+                        'uses'=>'PagoMesesController@perfil'
+                       ]);
+
+
+/*Retencion de pagos */
+Route::resource('pagos/retencion','RetencionPagosController');
+/*Perfil de los becarios que se les va a retener el pago*/
+Route::get('pagos/retencion/perfil/becarios/{id}',
+                       [
+                        'as'=>'retencion.perfil',
+                        'uses'=>'RetencionPagosController@perfil'
+                       ]);
+/*Ruta para la digitalizacion de documentos*/
+Route::resource('actualizacion/documentos','ExpedientesController');

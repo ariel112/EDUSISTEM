@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Universidad;
+use App\Calendario_universidad;
+use DB;
 
 class CalendarioController extends Controller
 {
@@ -37,7 +39,11 @@ class CalendarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $calendario = new Calendario_universidad($request->all());
+        $calendario->save();        
+       return redirect()->route('calendario.academico');        
+
     }
 
     /**
@@ -58,8 +64,21 @@ class CalendarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   $universidades = Universidad::all();
+        $calendario = Calendario_universidad::find($id);
+        $calendario2 = DB::select("
+                SELECT A.id as id, A.periodo, A.inicio AS inicio, A.final as final, b.nombre as nombre
+                    FROM calendario_universidad A 
+                    INNER JOIN universidad B 
+                    ON(A.universidad_id=B.id)
+                    WHERE a.id ='$id';
+                
+                 ");
+
+    
+
+     return view('calendario_academico.edit')->with('universidades',$universidades)->with('calendario',$calendario)->with('calendario2',$calendario2);
+        
     }
 
     /**
@@ -71,7 +90,12 @@ class CalendarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+        $calendario =Calendario_universidad::find($id);
+        $calendario->fill($request->all());
+        $calendario->save();
+
+        return redirect()->route('universidad.perfil',$request->universidad_id);
     }
 
 
@@ -89,8 +113,24 @@ class CalendarioController extends Controller
 
 
     public function calendario(){
+        $universidades = Universidad::all();
+      return view('calendario_academico.calendario')->with('universidades',$universidades);
+    }
 
-      return view('calendario_academico.calendario');
+    public function perfil($id){
+
+        $universidad = Universidad::find($id);
+        $periodos = DB::select("
+                SELECT A.descripcion as observacion, 
+                       A.id as id, 
+                       A.periodo as periodo, 
+                       A.inicio as inicio, 
+                       A.final as final, 
+                       A.solicitud_convenio as solicitud 
+                    FROM calendario_universidad A
+                    WHERE A.universidad_id ='$id'
+         ");
+        return view('calendario_academico.perfil')->with('universidad',$universidad)->with('periodos',$periodos);
     }
 
 }

@@ -38,34 +38,33 @@
 
 
                       <tbody>
-                         
+                         @foreach($datos as $dato)
                                 <tr>
-
+                                    @if($dato->genero==1)
                                     <td class="center">
-                                        <a href="{{route('aspirantes.perfil', 2)}}">
-                                            <img class="center-imagen" src="{{asset('images/masculino.jpg')}}">
+                                        <a href="{{route('aspirantes.perfil', $dato->id)}}">
+                                            <img class="center-imagen" width="50" height="50" src="{{asset('images/estudentM.png')}}">
                                         </a>    
                                     </td>
-                                    <td>Selvin Ariel Morazan Colindres</td>
-                                    <td>0705199400130</td>
-                                    <td>99138307</td>                                    
-                                    <td class="alinear"><img class="center-imagen" src="{{asset('images/editar.png')}}"></td>
-                            
-                                </tr>
-
-                                <tr>
-
+                                    @else
                                     <td class="center">
-                                        <a href="{{route('aspirantes.perfil', 2)}}">
-                                            <img class="center-imagen" src="{{asset('images/femenino.jpg')}}">
+                                        <a href="{{route('aspirantes.perfil',$dato->id)}}">
+                                            <img class="center-imagen" width="50" height="50" src="{{asset('images/estudentF.png')}}">
                                         </a>    
                                     </td>
-                                    <td>Marta Yolany Velasquez Daster</td>
-                                    <td>0705199400130</td>
-                                    <td>99138307</td>                                    
-                                    <td class="alinear"><img class="center-imagen" src="{{asset('images/editar.png')}}"></td>
+                                    @endif
+                                    <td>{{$dato->nombre}}</td>
+                                    <td>{{$dato->identidad}}</td>
+                                    <td>{{$dato->celular}}</td>                                    
+                                    <td class="alinear">
+                                        <a href="{{route('aspirantes.edit',$dato->id)}}">
+                                            <img class="center-imagen" width="50" height="50" src="{{asset('images/editar.png')}}">
+                                        </a>
+                                    </td>
                             
                                 </tr>
+                        @endforeach
+                               
 
                       
                       </tbody>

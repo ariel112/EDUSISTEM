@@ -21,7 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('semantic/semantic.min.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="fondo-login" style="background-image: url(img/fondo-beca.png);">
     <div id="app">
         <nav class="navbar barra-color navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -43,11 +43,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link color-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link color-white" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                             </li>
                             <li class="nav-item">
                                 @if (Route::has('register'))
-                                    <a class="nav-link color-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link color-white" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                                 @endif
                             </li>
                         @else

@@ -1,1 +1,0 @@
-acciones.blade.php

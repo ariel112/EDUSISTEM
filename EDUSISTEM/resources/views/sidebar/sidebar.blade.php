@@ -65,13 +65,37 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                    <li><a><i class="fa fa-calendar"></i> Calendario Academico <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-calendar"></i> Periodos Academicos <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                          <li><a href="{{route('calendario.index')}}">Agregar periodos academico</a></li>
-                          <li><a href="{{route('calendario.academico')}}">Calendario</a></li>                           
+                          <li><a href="{{route('calendario.index')}}"><i class="fa fa-plus"></i> Agregar periodos </a></li>
+                          <li><a href="{{route('calendario.academico')}}"><i class="fa fa-university"></i> Universidades</a></li>                           
                         </ul>
-                      </li>
-                  @if(Auth::user()->Administrador())  
+                    </li>
+                    <li><a><i class="fa fa-money"></i> Pago meses convenios<span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="{{route('meses.index')}}"><i class="fa fa-search"></i> Buscar universidad</a></li>
+                          <li><a href="{{route('meses.create')}}"><i class="fa fa-circle-o-notch"></i>Busqueda General</a></li>
+                        </ul>
+                    </li> 
+                    <ul class="nav side-menu">
+                    <li><a><i class="fa fa-graduation-cap"></i> Becas <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="{{route('becas.create')}}"><i class="fa fa-plus"></i> Crear Beca </a></li>
+                          <li><a href="{{route('becas.index')}}"><i class="fa fa-search"></i> Becas disponibles</a></li>                           
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-refresh"></i> Actualizacion <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="{{route('actualizacion.index')}}"><i class="fa fa-search"></i>Buscar becarios</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-ban"></i>Retencion de pagos<span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="{{route('retencion.index')}}"><i class="fa fa-search"></i> Buscar becarios</a></li>
+                        </ul>
+                    </li>
+
+                @if(Auth::user()->Administrador()) 
                        <li><a><i class="fa fa-user"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                           <li><a href="{{route('admin.index')}}">Buscar Usuarios</a></li>                         
@@ -80,16 +104,16 @@
                       <li><a><i class="fa fa-spinner"></i> Bitacora de usuarios <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                           <li><a href="{{route('admin.create')}}">Historial de sesiones</a></li>
-                          <li><a href="index2.html">Historial de acciones en el sistema</a></li>                  
+                          <li><a href="{{route('admin.bitacora')}}">Historial de acciones en el sistema</a></li>                  
                         </ul>
-                      </li>         
+                      </li>                              
                     </ul>
-                 @endif
+                @endif
                 @if(Auth::user()->Operaciones())  
-                       <li><a><i class="fa fa-male"></i> Aspirantes <span class="fa fa-chevron-down"></span></a>
+                       <li><a><i class="fa fa-slideshare"></i> Becarios <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                          <li><a href="{{route('aspirantes.create')}}">Agregar</a></li>
-                          <li><a href="{{route('aspirantes.index')}}">Buscar</a></li>                         
+                          <li><a href="{{route('aspirantes.create')}}"><i class="fa fa-plus"></i>Agregar</a></li>
+                          <li><a href="{{route('aspirantes.index')}}"><i class="fa fa-search"></i>Buscar</a></li>                         
                         </ul>
                       </li>                      
                     </ul>
