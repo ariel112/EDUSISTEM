@@ -36,16 +36,20 @@
                         <th>Salary</th>
                         </tr>
                       </thead>
-
-
                       <tbody>
                          @foreach ($users as $user)         
                                 <tr>
 
-                                    <td class="center">
-                                        <a href="{{route('user.perfil', $user->id)}}">
+                                    <td class="center">                                        
+                                           @if($user->img_url==null )
+                                           <a href="{{route('user.perfil', $user->id)}}">
                                             <img class="center-imagen" src="{{asset('img/user.png')}}">
-                                        </a>    
+                                           </a>              
+                                           @else
+                                            <a href="{{route('user.perfil', $user->id)}}">
+                                            <img class="center-imagen" style="width: 50px; height: 50px;" src="/images/perfiles/{{ $user->img_url}}">
+                                           </a>                                            
+                                           @endif    
                                     </td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->type}}</td>

@@ -41,7 +41,10 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><img src="{{asset('img/img-01.png')}}" style="border-radius: 50%; height: 45px; "> Edusystem</a>
+              <a href="index.html" class="site_title">
+                <img src="{{asset('img/img-01.png')}}" style="border-radius: 50%; height: 45px; "> 
+                Edusystem
+              </a>
             </div>
 
             <div class="clearfix"></div>
@@ -49,7 +52,12 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="{{asset('template/production/images/img.jpg')}}" alt="..." class="img-circle profile_img">
+               
+              @if(Auth::user()->img_url==null )               
+                    <img id="imagen-perfil" src="{{ asset('images/user.png') }}" width="60" height="60" alt="Taller" class="img-circle profile_img" style="width:50px; height: 50px" />                
+                @else               
+                    <img width="60" height="60"  src="/images/perfiles/{{ Auth::user()->img_url}}" class="img-circle profile_img"  width="60" height="60" alt="Taller" />                 
+              @endif 
               </div>
               <div class="profile_info">
                 <span>{{ Auth::user()->type }}</span>
@@ -87,6 +95,11 @@
                     <li><a><i class="fa fa-refresh"></i> Actualizacion <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                           <li><a href="{{route('actualizacion.index')}}"><i class="fa fa-search"></i>Buscar becarios</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-check-square"></i> Estatus Becarios <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="{{route('estatus.index')}}"><i class="fa fa-search"></i>Buscar becarios</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-ban"></i>Retencion de pagos<span class="fa fa-chevron-down"></span></a>
@@ -161,7 +174,13 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{{asset('template/production/images/img.jpg')}}" alt="">{{ Auth::user()->name }}
+                
+                     @if(Auth::user()->img_url==null )
+                       <img src="{{ asset('images/user.png') }}" alt="">{{ Auth::user()->name }}                              
+                   @else
+                    <img  style="width: 50px; height: 50px;"  src="/images/perfiles/{{ Auth::user()->img_url}}"/>{{ Auth::user()->name }}   
+                 
+                 @endif 
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

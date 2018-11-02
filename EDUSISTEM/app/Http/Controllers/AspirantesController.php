@@ -21,6 +21,7 @@ use App\persona_dependiente;
 use App\Datos_personales;
 use App\Estado_estudios;
 use App\Genero;
+use App\Digitalizacion_documentos;
 
 class AspirantesController extends Controller
 {
@@ -40,9 +41,10 @@ class AspirantesController extends Controller
      public function perfil($id)    
     {
 
-        $becarios = DB::select("
-                                    
-                                  SELECT  A.id_cargo AS cargo, 
+        $becarios = DB::select("                                    
+                                  SELECT  
+                                   A.id as id,         
+                                   A.id_cargo AS cargo, 
                                    A.identidad AS identidad,
                                    A.nombre AS  nombre,
                                    A.genero AS genero, 
@@ -101,10 +103,19 @@ class AspirantesController extends Controller
                             WHERE A.id='$id';
          ");
 
-
+        $expedientes = DB::select("
+            SELECT 
+              B.url,
+              B.periodo, 
+              B.anio
+                FROM datos_personales A
+                INNER JOIN digitalizacion_documentos B
+                ON(A.id=B.datos_personales_id)
+                WHERE A.id='$id';        
+                         ");
 
         
-        return view('aspirantes/perfil')->with("becarios",$becarios);
+        return view('aspirantes/perfil')->with("becarios",$becarios)->with('expedientes',$expedientes);
     }
 
 

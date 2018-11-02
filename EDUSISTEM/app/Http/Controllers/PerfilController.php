@@ -101,7 +101,7 @@ class PerfilController extends Controller
                 $path = public_path().'/images/perfiles/';
                 $file->move($path,$name);               
                 $usuario->img_url=$name;  
-
+  
                                               }
 
                 else{ 

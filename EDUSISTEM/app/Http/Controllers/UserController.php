@@ -20,7 +20,7 @@ class UserController extends Controller
     /*Index principal*/
     public function index(){
         $users = DB::select("
-            SELECT A.id AS id, A.name AS name, A.type AS type, A.email AS email, A.created_at AS created_at
+            SELECT A.id AS id, A.name AS name, A.type AS type, A.email AS email, A.created_at AS created_at, A.img_url as img_url
               FROM users A
               WHERE A.type !='Administrador';
          ");

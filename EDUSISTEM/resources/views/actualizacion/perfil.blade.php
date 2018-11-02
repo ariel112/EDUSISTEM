@@ -272,7 +272,7 @@ function valida(e){
                                  <option value="{{$periodo->id}}">{{$periodo->periodo}}</option>
                                 @endforeach                                                                  
                               </select>                           
-                          </div>
+            </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Indice Global:</label>
             <input onkeypress="return valida(event)" maxlength="2" type="text" name="promedio_global" class="form-control" style="width: 60px;" required>

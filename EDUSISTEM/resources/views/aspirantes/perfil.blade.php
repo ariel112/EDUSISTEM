@@ -56,10 +56,7 @@
                         </li>
                         <li><a href="#doc" data-toggle="tab">Expediente</a>
                         </li>
-                        <li><a href="#ficha" data-toggle="tab">Ficha 01</a>
-                        </li>
-                        <li><a href="#iden" data-toggle="tab">Identidad Digitalizada</a>
-                        </li>
+                      
                       </ul>
                     </div>
 
@@ -99,21 +96,23 @@
                                  <table id="datatable" class="table table-striped table-bordered">
                                   <thead>
                                     <tr>
-                                    <th class="alinear" >Imagen</th>
-                                    <th>Nombre</th>
-                                    <th>Periodo</th>
+                                    <th class="alinear" >Documento</th>
+                                    <th>Descripcón</th>
                                     <th>año</th>
                                     </tr>
                                   </thead>
                                   <tbody>
+                                  @foreach($expedientes as $expediente)  
                                             <tr>
-                                                <td class="center">                                                    
-                                                    <img class="center-imagen" width="50" height="50" src="{{asset('img/pdf.png')}}">
+                                                <td class="center">       
+                                                    <a href="/documentos/expediente/{{$expediente->url}}" download="{{$becario->identidad}}">
+                                                      <img class="center-imagen" width="50" height="50" src="{{asset('img/pdf.png')}}">
+                                                    </a>
                                                 </td>
-                                                <td>forma 03</td>
-                                                <td>I Periodo</td>
-                                                <td>2018</td>                                        
+                                                <td>{{$expediente->periodo}}</td>
+                                                <td>{{$expediente->anio}}</td>                                       
                                             </tr>
+                                  @endforeach          
                                   </tbody>
                                 </table>
 
@@ -133,41 +132,9 @@
                         <div class="tab-pane" id="ficha">
                             <p class="lead">Ficha de Información del Solicitante</p>
                             
-                            <div class="container mt-3">                      
-                              <h2>  Ficha 01: <img class="center-imagen" width="50" height="50" src="{{asset('img/pdf.png')}}">
-                                año:  2018
-                              </h2>
-                              <table id="datatable" class="table table-striped table-bordered">
-                                  <thead>
-                                    <tr>
-                                    <th class="alinear" >Periodo</th>
-                                    <th>año</th>
-                                    <th>Indice Global</th>
-                                    <th>Indice del periodo</th>
-                            
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                              
-                                            <tr>                                              
-                                                <td class="center">                                                    
-                                                   hola 
-                                                </td>
-                                                <td>hola</td>
-                                                <td>hola</td>
-                                                <td>hola</td>                        
-                                            </tr>
-                                    
-                                  </tbody>
-                                </table>                                          
-                             </div>
+                           
                         </div>
-                        <div class="tab-pane" id="iden">
-                            <p class="lead">Identidad digitalizada</p>                            
-                            <div class="container mt-3">                               
-                                <h2>Identidad: <img class="center-imagen" width="50" height="50" src="{{asset('img/pdf.png')}}"><h2>                        
-                             </div>
-                        </div>
+                      
                         <div class="tab-pane" id="settings">
                             <p class="lead">Datos Familiares</p>
                             <div class="padre">
@@ -216,22 +183,20 @@
      
       </div>
       <div class="modal-body">
-            <input type="text" name="id_datos_personales" style="display: none;" value="2" class="form-control" style="width: 60px;">
+            <input type="text" name="datos_personales_id" style="display: none;" value="{{$becario->id}}" class="form-control" style="width: 60px;">
+            <input type="text" name="identidad" style="display: none;" value="{{$becario->identidad}}" class="form-control" style="width: 60px;">
+
            <div class="form-group">
-               <label for="recipient-name" class="col-form-label" >Seleccione un periodo:</label>                           
-                <select name="calendario_universidad_id"  class="form-control" required>
-                    <option selected disabled>Seleccione un periodo</option>                               
-                    <option value="1">I periodo</option>
-                    <option value="1">II periodo</option>                                                                                       
-                </select>                           
+               <label for="recipient-name" class="col-form-label" >Descripción:</label>
+               <input type="text" name="periodo" class="form-control" required>                                                                      
            </div>
            <div class="form-group" >
             <label for="message-text" class="col-form-label">Año:</label>
-            <input  type="date" class="form-control"  required style="width: 220px;">
+            <input  type="date" class="form-control"  name="anio" required style="width: 220px;">
           </div>
           <div class="form-group">
             <label  class="col-form-label">Archivos:</label>
-            <input   type="file" name="promedio_global"   required>
+            <input   type="file" name="expediente"   required>
           </div>
         
         </form>
@@ -249,7 +214,41 @@
 
 
 
+{!! Form::open(['route' => ['ficha.store'], 'method'=>'POST', 'files'=>true,'data-parsley-validate','class'=>'form-horizontal form-label-left']) !!}
 
+<div class="modal fade" id="ficha01" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" align="center">
+        <h5 class="modal-title" id="exampleModalLabel">FICHA01 DIGITALIZAR</h5>
+        <h3>{{$becario->universidad}}</h3>
+     
+      </div>
+      <div class="modal-body">
+            <input type="text" name="datos_personales_id" style="display: none;" value="{{$becario->id}}" class="form-control" style="width: 60px;">
+            <input type="text" name="identidad" style="display: none;" value="{{$becario->identidad}}" class="form-control" style="width: 60px;">
+
+           <div class="form-group" >
+            <label for="message-text" class="col-form-label">Año:</label>
+            <input  type="date" class="form-control"  name="anio" required style="width: 220px;">
+          </div>
+          <div class="form-group">
+            <label  class="col-form-label">Archivos:</label>
+            <input   type="file" name="ficha"   required>
+          </div>
+        
+        </form>
+      </div>
+      <div  class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+         {!! Form::submit('Registrar',['class'=>'btn btn-success','id'=>'btnEmpty' ]) !!}  
+      </div>
+    </div>
+  </div>
+</div>
+
+       
+            {{Form::close()}}
 
   @endforeach
 
@@ -257,6 +256,16 @@
 
 
 @section('script')
+
+
+
+
+
+
+
+
+ 
+
 
  <!-- Datatables -->
     <script type="text/javascript" src="{{asset('template/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>  
@@ -274,6 +283,29 @@
     <script type="text/javascript" src="{{asset('template/vendors/jszip/dist/jszip.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('template/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('template/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+    
 
+    <script type="text/javascript" src="{{asset('template/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js')}}"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script type="text/javascript" src="{{asset('template/vendors/jquery.hotkeys/jquery.hotkeys.js')}}"></script> 
+    <script type="text/javascript" src="{{asset('template/vendors/google-code-prettify/src/prettify.js')}}"></script>    
+    <!-- jQuery Tags Input -->
+    <script type="text/javascript" src="{{asset('template/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
 
+    
+
+    <!-- Switchery -->
+    <script type="text/javascript" src="{{asset('template/vendors/switchery/dist/switchery.min.js')}}"></script>
+    <!-- Select2 -->
+    <script type="text/javascript" src="{{asset('template/vendors/select2/dist/js/select2.full.min.js')}}"></script>
+    <!-- Parsley -->
+    <script type="text/javascript" src="{{asset('template/vendors/parsleyjs/dist/parsley.js')}}"></script>
+    <!-- Autosize -->
+    <script type="text/javascript" src="{{asset('template/vendors/autosize/dist/autosize.min.js')}}"></script>   
+    <!-- jQuery autocomplete -->
+    <script type="text/javascript" src="{{asset('template/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js')}}"></script>
+    <!-- starrr -->
+    <script type="text/javascript" src="{{asset('template/vendors/starrr/dist/starrr.js')}}"></script> 
+      
+ 
 @endsection

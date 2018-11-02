@@ -37,10 +37,32 @@ class ExpedientesController extends Controller
     public function store(Request $request)
     {
 
+              
 
-        dd($request);
+                $expediente= new Digitalizacion_documentos();
+                
+                
+                if($request->file('expediente')) { 
+                $file=$request->file('expediente');
+                $name='Expediente_'.$request->identidad.'_'.time().'.'.$file->getClientOriginalExtension();
+                $path = public_path().'/documentos/expediente/';
+                $file->move($path,$name);
+                                              }
+                 $expediente->url=$name;
+                 $expediente->datos_personales_id=$request->datos_personales_id;
+                 $expediente->anio=$request->anio;
+                 $expediente->periodo=$request->periodo;
+                
+                 
+                 $expediente->save();                             
+                return redirect()->route('aspirantes.perfil',$request->datos_personales_id);
+
+        
     }
 
+    public function ficha01(Request $request){
+        dd($request);
+    }
     /**
      * Display the specified resource.
      *
@@ -86,3 +108,5 @@ class ExpedientesController extends Controller
         //
     }
 }
+
+

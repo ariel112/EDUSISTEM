@@ -33,7 +33,13 @@
                       <div class="profile_img">
                         <div id="crop-avatar">
                           <!-- Current avatar -->
-                          <img class="img-responsive avatar-view" src="{{asset('images/user.png')}}" alt="Avatar" title="Change the avatar">
+                          
+                          @if($user->img_url==null )
+                           <img class="img-responsive avatar-view" src="{{asset('images/user.png')}}" alt="Avatar" title="Change the avatar">               
+                           @else
+                            <img class="img-responsive avatar-view" src="/images/perfiles/{{ $user->img_url}}" alt="Avatar" title="Change the avatar">                       
+                                                     
+                         @endif 
                         </div>
                       </div>
                       <h3 class="text-capitalize">{{ $user->name }}</h3>

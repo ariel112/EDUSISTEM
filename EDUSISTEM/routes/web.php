@@ -122,3 +122,12 @@ Route::get('pagos/retencion/perfil/becarios/{id}',
                        ]);
 /*Ruta para la digitalizacion de documentos*/
 Route::resource('actualizacion/documentos','ExpedientesController');
+
+/*Ruta para cargar la ficha*/
+Route::POST('actualizacion/documentos/ficha',[
+'as'=>'ficha.store',
+ 'uses'=>'ExpendientesController@ficha01'
+]); 
+
+/*Ruta para mostrar los estatus de los becarios*/
+Route::resource('becarios/estatus','EstatusController');

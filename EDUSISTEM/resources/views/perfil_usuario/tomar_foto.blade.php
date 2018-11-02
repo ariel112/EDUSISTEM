@@ -67,8 +67,9 @@
                        <input style="visibility: hidden;" type="text" name="id_usuario" value='{{Auth::user()->id}}'>
                          
                        <!--Ventana de camara para el cel -->
-                       <div align="center" id="camara-cel">        
-                          <input  name="img_url" type="file"  accept="image/*" capture="camera">
+                       <div align="center" id="camara-cel">
+                          <i class="fa fa-camera"></i>        
+                          <input  name="image" type="file"  accept="image/*" capture="camera">
                        </div>
                       <div align="center">
                       {!! Form::submit('Guardar Foto',['class'=>'btn btn-info', 'id'=>'btnInfo']) !!}
