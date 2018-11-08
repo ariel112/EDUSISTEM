@@ -475,9 +475,9 @@ class AspirantesController extends Controller
         $nueva = 'G.'.$mes;
       
         
- dd($nueva);
+
       
-       return $preplanilla= DB::select(" 
+       return $preAmbos= DB::select(" 
              SELECT 
                    A.universidad_id, 
                    A.periodo, 
@@ -490,7 +490,42 @@ class AspirantesController extends Controller
                 ON(A.id=B.calendario_universidad_id)
                 INNER JOIN datos_personales C
                 ON(B.id_datos_personales=C.id)
-                INNER JOIN retenido D
+                LEFT JOIN retenido D
+                ON(C.id=D.id_datos_personales)
+                INNER JOIN calendario_universidad E
+                ON(B.calendario_universidad_id= E.id)
+                INNER JOIN universidad F
+                ON(E.universidad_id=F.id)
+                INNER JOIN pagos_meses_universidad G
+                ON(G.universidad_id= F.id)
+                WHERE  ('$numMes' BETWEEN A.inicio AND A.final) 
+                        AND (B.promedio_global>=65 AND B.promedio_periodo>=65) 
+                        AND (C.estado_estudios='Activo'  OR C.estado_practica= 'Activo')
+                        AND ('$numMes' NOT BETWEEN C.retencion_inicio AND C.retencion_final)
+                        AND (" . $nueva . "='Si')                           
+                            GROUP BY    A.universidad_id, 
+                                        A.periodo, 
+                                        A.inicio,
+                                        A.final,
+                                        B.id_datos_personales,
+                                        C.nombre ;
+                         ");
+
+
+       /*$preplanilla= DB::select(" 
+             SELECT 
+                   A.universidad_id, 
+                   A.periodo, 
+                   A.inicio,
+                   A.final,
+                   B.id_datos_personales,
+                   C.nombre
+                FROM calendario_universidad A
+                LEFT JOIN actualizacion_periodo B
+                ON(A.id=B.calendario_universidad_id)
+                INNER JOIN datos_personales C
+                ON(B.id_datos_personales=C.id)
+                LEFT JOIN retenido D
                 ON(C.id=D.id_datos_personales)
                 INNER JOIN calendario_universidad E
                 ON(B.calendario_universidad_id= E.id)
@@ -509,7 +544,7 @@ class AspirantesController extends Controller
                                         A.final,
                                         B.id_datos_personales,
                                         C.nombre ;
-                         ");
+                         ");*/
     }
 
 

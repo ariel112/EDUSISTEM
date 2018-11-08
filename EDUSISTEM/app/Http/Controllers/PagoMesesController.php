@@ -126,7 +126,7 @@ class PagoMesesController extends Controller
 
     public function perfil($id){
         $pagos = DB::select(" 
-            SELECT id,enero, febrero,marzo,abril,mayo,junio,julio,agosto,septiembre,octubre,noviembre,diciembre
+            SELECT id, 01 enero, 02 febrero, 03 marzo, 04 abril, 05 mayo,06 junio, 07 julio, 08 agosto, 09 septiembre, 10 octubre, 11 noviembre, 12 diciembre
                 FROM pagos_meses_universidad
                 WHERE universidad_id='$id';
 
