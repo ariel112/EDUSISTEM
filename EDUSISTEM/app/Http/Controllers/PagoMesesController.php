@@ -33,18 +33,18 @@ class PagoMesesController extends Controller
                        A.id as id,
                        B.nombre as universidad,
                        B.abreviatura as abreviatura,
-                       A.enero as enero, 
-                       A.febrero as febrero,
-                       A.marzo as marzo,
-                       A.abril as abril,
-                       A.mayo as mayo,
-                       A.junio as junio,
-                       A.julio as julio,
-                       A.agosto as agosto,
-                       A.septiembre as septiembre,
-                       A.octubre as octubre,
-                       A.noviembre as noviembre,
-                       A.diciembre as diciembre
+                       A.01 as enero, 
+                       A.02 as febrero,
+                       A.03 as marzo,
+                       A.04 as abril,
+                       A.05 as mayo,
+                       A.06 as junio,
+                       A.07 as julio,
+                       A.08 as agosto,
+                       A.09 as septiembre,
+                       A.10 as octubre,
+                       A.11 as noviembre,
+                       A.12 as diciembre
                       FROM pagos_meses_universidad A
                       INNER JOIN universidad B
                       ON(A.universidad_id=B.id)

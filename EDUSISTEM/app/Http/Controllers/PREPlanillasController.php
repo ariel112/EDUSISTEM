@@ -42,6 +42,9 @@ class PREPlanillasController extends Controller
                 ON(E.universidad_id=H.id)
          ");
 
+        
+        
+        
         return view('pre_planillas/index')->with('datos',$datos);
     }
 
@@ -63,7 +66,43 @@ class PREPlanillasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+
+       $preplanilla= DB::select(" 
+            SELECT 
+                           A.universidad_id, 
+                           A.periodo, 
+                           A.inicio,
+                           A.final,
+                           B.id_datos_personales,
+                           C.nombre as nombre
+            FROM calendario_universidad A
+            LEFT JOIN actualizacion_periodo B
+            ON(A.id=B.calendario_universidad_id)
+            INNER JOIN datos_personales C
+            ON(B.id_datos_personales=C.id)
+            INNER JOIN retenido D
+            ON(C.id=D.id_datos_personales)
+            INNER JOIN calendario_universidad E
+            ON(B.calendario_universidad_id= E.id)
+            INNER JOIN universidad F
+            ON(E.universidad_id=F.id)
+            INNER JOIN pagos_meses_universidad G
+            ON(G.universidad_id= F.id)
+            WHERE  ('2018-4-8' BETWEEN A.inicio AND A.final) 
+                    AND (B.promedio_global>=65 AND B.promedio_periodo>=65) 
+                    AND (C.estado_estudios='Activo'  OR C.estado_practica= 'Activo')
+                    AND ('2018-4-8' NOT BETWEEN C.retencion_inicio AND C.retencion_final)
+                    AND (G.marzo='AMBOS PERIODO')
+                    /*ES LA VARIABLE QUE VA A IR CAMBIANDO*/       
+            GROUP BY      A.universidad_id, 
+                           A.periodo, 
+                           A.inicio,
+                           A.final,
+                           B.id_datos_personales,
+                           C.nombre ;
+
+         ");
     }
 
     /**
