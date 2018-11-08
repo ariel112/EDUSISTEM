@@ -475,7 +475,7 @@ class AspirantesController extends Controller
         $nueva = 'G.'.$mes;
       
         
-
+ dd($nueva);
       
        return $preplanilla= DB::select(" 
              SELECT 
