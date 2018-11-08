@@ -9,12 +9,13 @@ class persona_dependiente extends Model
     protected $table ="persona_dependiente";
     protected $fillable = 
     [
-    	'id',
+    	
     	'id_datos_personales',
     	'identidad',
     	'nombre_completo',
     	'email',
     	'parentesco',
+        'id',
     	'celular'
     ];
 }

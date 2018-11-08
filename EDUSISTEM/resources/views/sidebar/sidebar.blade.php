@@ -107,6 +107,11 @@
                           <li><a href="{{route('retencion.index')}}"><i class="fa fa-search"></i> Buscar becarios</a></li>
                         </ul>
                     </li>
+                    <li><a><i class="fa fa-list-alt"></i>Pre-Planilas<span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="{{route('pre-planilla.index')}}"><i class="fa fa-search"></i> Buscar becarios</a></li>
+                        </ul>
+                    </li>
 
                 @if(Auth::user()->Administrador()) 
                        <li><a><i class="fa fa-user"></i> Usuarios <span class="fa fa-chevron-down"></span></a>

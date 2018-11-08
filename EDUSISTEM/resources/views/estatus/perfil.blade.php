@@ -1,21 +1,17 @@
 @extends('sidebar.sidebar')
 
-@section('content')
-			 					
-
+@section('content')			 					
 
 
 @foreach($becarios as $becario)
 
 <div class="right_col" role="main">
-
  <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Perfil del becario Para la retención del pago</h2>                    
+                    <h2>Perfil del becario (Estatus)</h2>                    
                     <div class="clearfix"></div>
                   </div>
-
 
                   <div class="x_content">
 					
@@ -44,9 +40,9 @@
                       <!-- required for floating -->
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs tabs-left">
-                        <li class="active"><a href="#home" data-toggle="tab">Retención de pagos</a>
+                        <li class="active"><a href="#home" data-toggle="tab">Estatus Becario</a>
                         </li>
-                        <li><a href="#profile" data-toggle="tab">Información Universitaria</a>
+                        <li><a href="#profile" data-toggle="tab">Informacion de Practica</a>
                         </li>
                         <li><a href="#messages" data-toggle="tab">Persona Dependiente</a>
                         </li>
@@ -56,10 +52,7 @@
                         </li>
                         <li><a href="#doc" data-toggle="tab">Expediente</a>
                         </li>
-                        <li><a href="#ficha" data-toggle="tab">Ficha 01</a>
-                        </li>
-                        <li><a href="#iden" data-toggle="tab">Identidad Digitalizada</a>
-                        </li>
+                      
                       </ul>
                     </div>
 
@@ -67,42 +60,58 @@
                       <!-- Tab panes -->
                       <div class="tab-content">
                         <div class="tab-pane active" id="home">
-                          <p class="lead">Retenciones de pagos</p>
-						 	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Retener pago </button>                                                               
-                               <table id="datatable" class="table table-striped table-bordered">
+                          <p class="lead">Estatus del becario</p>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Cambiar Estatus </button>
+                           <table id="datatable-fixed-header" class="table table-striped table-bordered">
                                   <thead>
-                                    <tr>                                    
-                                    <th>año</th>
-                                    <th>Inicio</th>
-                                    <th>Final</th>
-                                    <th>Observación</th>                                  
+                                    <tr>
+                                      <th>Estado</th>
+                                      <th>Descripcón</th>
+                                      <th>Fecha</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    @foreach($retencions as $retencion)
-                                            <tr>                                              
-                                                <td class="center">                                                    
-                                                   {{$retencion->inicio}} 
-                                                </td>
-                                                <td>{{$retencion->inicio}}</td>
-                                                <td>{{$retencion->final}}</td>
-                                                <td>{{$retencion->descripcion}}</td>
-                                                                              
-                                            </tr>
-                                     @endforeach       
+                                  @foreach($estado_estudios as $estudio)                        
+                                    <tr>
+                                      <td>{{$estudio->estado}}</td>
+                                      <td>{{$estudio->descripcion}}</td>
+                                      <td>{{$estudio->created_at}}</td>                                       
+                                    </tr>
+                                  @endforeach      
                                   </tbody>
-                                </table>   
+                                </table>
+                                                                
+                              
                             
                         </div>
                         <div class="tab-pane" id="profile">
-                            <p class="lead">Información Universitaria</p>
-                                <div class="col-md-6  ">
-                                    <h2>Universidad: </h2><p>{{$becario->universidad}}</p>
-                                    <h2>Campus: </h2><P>{{$becario->campus}}</P>
-                                    <h2>Facultad: </h2><p>{{$becario->facultad}}</p>
-                                    <h2>Carrera: </h2><p>{{$becario->carrera}}</p>
-                                    <h2>Cuenta: </h2> <p>{{$becario->cuenta_universitaria}}</p>                           
-                                  </div>
+                            <p class="lead">Información de Practica</p>
+                                  <table id="datatable-fixed-header" class="table table-striped table-bordered">
+                                  <thead>
+                                    <tr>
+                                    <th class="alinear" >Documento</th>
+                                    <th>Descripcón</th>
+                                    <th>Estado</th>
+                                    <th>Inicio</th>
+                                    <th>Final</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    @foreach($practicas as $practica)
+                                          <tr>
+                                             <td class="center">       
+                                                  <a href="/documentos/practica/{{$practica->url}}" download="{{$becario->identidad}}">
+                                                    <img class="center-imagen" width="50" height="50" src="{{asset('img/pdf.png')}}">
+                                                  </a>
+                                              </td>
+                                              <td>{{$practica->nombre}}</td>
+                                              <td>{{$practica->estado}}</td>
+                                              <td>{{$practica->inicio}}</td>
+                                              <td>{{$practica->final}}</td>                                       
+                                           </tr>
+                                    @endforeach                                             
+                                  </tbody>
+                                </table>
                         </div>
                         <div class="tab-pane" id="beca">
                             <p class="lead">Información de la Beca</p>
@@ -115,27 +124,8 @@
                         </div>
                         <div class="tab-pane" id="doc">
                             <p class="lead">Documentos Digitales</p>
-                                <button class="btn btn-success">Agregar Documentos</button>
-                                 <table id="datatable" class="table table-striped table-bordered">
-                                  <thead>
-                                    <tr>
-                                    <th class="alinear" >Imagen</th>
-                                    <th>Nombre</th>
-                                    <th>Periodo</th>
-                                    <th>año</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                            <tr>
-                                                <td class="center">                                                    
-                                                    <img class="center-imagen" width="50" height="50" src="{{asset('img/pdf.png')}}">
-                                                </td>
-                                                <td>forma 03</td>
-                                                <td>I Periodo</td>
-                                                <td>2018</td>                                        
-                                            </tr>
-                                  </tbody>
-                                </table>
+                                
+                                
 
 
                         </div>
@@ -153,18 +143,9 @@
                         <div class="tab-pane" id="ficha">
                             <p class="lead">Ficha de Información del Solicitante</p>
                             
-                            <div class="container mt-3">                      
-                              <h2>  Ficha 01: <img class="center-imagen" width="50" height="50" src="{{asset('img/pdf.png')}}">
-                                año:  2018
-                              </h2>                          
-                             </div>
+                           
                         </div>
-                        <div class="tab-pane" id="iden">
-                            <p class="lead">Identidad digitalizada</p>                            
-                            <div class="container mt-3">                               
-                                <h2>Identidad: <img class="center-imagen" width="50" height="50" src="{{asset('img/pdf.png')}}"><h2>                        
-                             </div>
-                        </div>
+                      
                         <div class="tab-pane" id="settings">
                             <p class="lead">Datos Familiares</p>
                             <div class="padre">
@@ -199,32 +180,52 @@
                 </div>
 </div>
 </div>
-
-
  
-{!! Form::open(['route'=>['retencion.store'], 'method'=>'POST', 'files'=>true,'data-parsley-validate','class'=>'form-horizontal form-label-left']) !!}
- <input type="text" name="id_datos_personales" style="display: none;" value="{{$becario->id}}" class="form-control" style="width: 60px;">
+
+
+{!! Form::open(['route' => ['estatus.store'], 'method'=>'POST', 'files'=>true,'data-parsley-validate','class'=>'form-horizontal form-label-left']) !!}
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header" align="center">
-        <h5 class="modal-title" id="exampleModalLabel">Retencion de pagos</h5>
-        <h3>RETENCIÓN DE PAGO</h3>
+        <h5 class="modal-title" id="exampleModalLabel">Actualización de Estatus</h5>
+        <h3>{{$becario->universidad}}</h3>
      
       </div>
       <div class="modal-body">
-      	<div class="form-group">
-            <label for="recipient-name" class="col-form-label">Descripcion:</label>
-            <textarea name="descripcion" class="form-control"></textarea>
+            <input type="text" name="datos_personales_id" style="display: none;" value="{{$becario->id}}" class="form-control" style="width: 60px;">
+            <input type="text" name="identidad" style="display: none;" value="{{$becario->identidad}}" class="form-control" style="width: 60px;">
+
+         <div class="form-group" >
+            <label for="message-text" class="col-form-label">Estatus:</label>
+            <select name="estatus" id="estatus" required class="form-control" >
+              <option selected disabled >Seleccione un estatus</option>
+              <option value="Practica" >Practica</option>
+              <option value="Activo" >Activo</option>
+              <option value="Inactivo">Inactivo</option>
+              <option value="Egresado">Egresado</option>      
+            </select> 
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Fecha Inicio:</label>
-            <input type="date" name="inicio" class="form-control" style="width: 260px;">
+          <div id="descripcion-estado" class="form-group" >
+              <label for="message-text" class="col-form-label">Descripción:</label>             
+              <textarea id="descripcion" name="descripcion" class="form-control"></textarea>
           </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Fecha Final:</label>
-            <input type="date" name="final" class="form-control" style="width: 260px;">
-          </div>       
+          <div id="tiempo-practica">
+            <div class="form-group" >
+              <label for="message-text" class="col-form-label">Inicio:</label>
+              <input  type="date" class="form-control" id="inicio"  name="inicio"  style="width: 220px;">
+            </div>
+             <div class="form-group" >
+              <label for="message-text" class="col-form-label">Final:</label>
+              <input id="final" type="date" class="form-control"  name="final"  style="width: 220px;">
+            </div>
+            <div class="form-group">
+              <label  class="col-form-label">Archivos:</label>
+              <input id="archivo"  type="file" name="expediente"  >
+            </div>
+          </div>
+        
         </form>
       </div>
       <div  class="modal-footer">
@@ -237,11 +238,29 @@
 
        
             {{Form::close()}}
-	@endforeach
+
+
+
+
+
+
+  @endforeach
+
 @endsection
 
 
 @section('script')
+
+
+
+
+
+
+ <!--Este script es para las peticiones con ajax -->
+    <script src="{{ asset('js/script.js')}}"></script> 
+
+ 
+
 
  <!-- Datatables -->
     <script type="text/javascript" src="{{asset('template/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>  
@@ -259,6 +278,29 @@
     <script type="text/javascript" src="{{asset('template/vendors/jszip/dist/jszip.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('template/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('template/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+    
 
+    <script type="text/javascript" src="{{asset('template/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js')}}"></script>
+    <!-- bootstrap-wysiwyg -->
+    <script type="text/javascript" src="{{asset('template/vendors/jquery.hotkeys/jquery.hotkeys.js')}}"></script> 
+    <script type="text/javascript" src="{{asset('template/vendors/google-code-prettify/src/prettify.js')}}"></script>    
+    <!-- jQuery Tags Input -->
+    <script type="text/javascript" src="{{asset('template/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
 
+    
+
+    <!-- Switchery -->
+    <script type="text/javascript" src="{{asset('template/vendors/switchery/dist/switchery.min.js')}}"></script>
+    <!-- Select2 -->
+    <script type="text/javascript" src="{{asset('template/vendors/select2/dist/js/select2.full.min.js')}}"></script>
+    <!-- Parsley -->
+    <script type="text/javascript" src="{{asset('template/vendors/parsleyjs/dist/parsley.js')}}"></script>
+    <!-- Autosize -->
+    <script type="text/javascript" src="{{asset('template/vendors/autosize/dist/autosize.min.js')}}"></script>   
+    <!-- jQuery autocomplete -->
+    <script type="text/javascript" src="{{asset('template/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js')}}"></script>
+    <!-- starrr -->
+    <script type="text/javascript" src="{{asset('template/vendors/starrr/dist/starrr.js')}}"></script> 
+      
+ 
 @endsection

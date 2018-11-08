@@ -40,8 +40,15 @@ class RetencionPagosController extends Controller
      */
     public function store(Request $request)
     {   
-        $datos = new Pagos_retenido($request->all());
+        $datos = new Pagos_retenido($request->all());        
         $datos->save();
+        
+        
+        /*Datos personales*/
+        $becario = Datos_personales::find($request->id_datos_personales);        
+        $becario->retencion_inicio= $datos->inicio;
+        $becario->retencion_final = $datos->final;
+        $becario->save();
 
         return redirect()->route('retencion.perfil',$request->id_datos_personales);
     }
@@ -93,7 +100,11 @@ class RetencionPagosController extends Controller
 
        public function perfil($id)    
     {  
-        $retencions = Pagos_retenido::all();
+        $retencions = DB::select("
+          SELECT *
+            FROM retenido
+            WHERE id_datos_personales='$id'; 
+               ");
 
         $becarios = DB::select("
                                     

@@ -183,11 +183,14 @@ class AspirantesController extends Controller
         $aspirante->genero= $request->id_genero;
         $aspirante->becas_id=$request->becas_id;
         $aspirante->cuenta_universitaria=$request->cuenta_universitaria;
+        /*lleno informacion en los datos personales*/
+        $aspirante->estado_estudios='Activo';
+        $aspirante->fecha_estado_estudios= $padre->created_at;        
         $aspirante->save();
           
 
         /*Datos de la persona dependiente*/
-        $dependiente = new persona_dependiente($request->all());        
+        $dependiente = new persona_dependiente();        
         $dependiente->id_datos_personales = $aspirante->id;
         $dependiente->identidad =$request->id_dependiente;
         $dependiente->nombre_completo =$request->nombre_dependiente;
@@ -206,7 +209,9 @@ class AspirantesController extends Controller
         $estado_estudio->estado= 'Activo';
         $estado_estudio->descripcion= 'Activo por el sistema';
         $estado_estudio->datos_personales_id=$aspirante->id;
-        $estado_estudio->save();      
+        $estado_estudio->save();
+
+          
 
         return redirect()->route('aspirantes.perfil',$aspirante->id);
       

@@ -14,14 +14,12 @@
                   <div class="x_title">
                     <h2>Estatus en el sistema de los becarios</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                     
-                     
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-
 
                   <div class="x_content">
                 
@@ -31,7 +29,9 @@
                         <th class="alinear" >Imagen</th>
                         <th>Nombre</th>
                         <th>Identidad</th>
-                        <th>Estado</th>                      
+                        <th>Estado</th>
+                        <th>Fecha del estado</th>
+                        <TH>Observación</TH>                      
                         
                         </tr>
                       </thead>
@@ -42,22 +42,30 @@
                                 <tr>
                                     @if($dato->genero==1)
                                     <td class="center">
-                                        <a href="{{route('aspirantes.perfil', $dato->id)}}">
+                                        <a href="{{route('estatus.perfil', $dato->id)}}">
                                             <img class="center-imagen" width="50" height="50" src="{{asset('images/estudentM.png')}}">
                                         </a>    
                                     </td>
                                     @else
                                     <td class="center">
-                                        <a href="{{route('aspirantes.perfil',$dato->id)}}">
+                                        <a href="{{route('estatus.perfil',$dato->id)}}">
                                             <img class="center-imagen" width="50" height="50" src="{{asset('images/estudentF.png')}}">
                                         </a>    
                                     </td>
                                     @endif
                                     <td>{{$dato->nombre}}</td>
                                     <td>{{$dato->identidad}}</td>
-                                    <td>{{$dato->estado}}</td>                                    
-                                    
-                            
+                                    <td>{{$dato->estado}}</td>
+                                    <td>{{$dato->fecha}}</td>
+                                    @if($dato->practica==null)
+                                    <td> </td>
+                                    @else()
+                                    <td> 
+                                        <p class="color-negro">{{$dato->practica}}</p> 
+                                        <p class="estilo-verde" ><i class="fa fa-star"></i> Inicio:{{$dato->practica_inicio}}</p>
+                                        <p class="estilo-anaranjado"><i class="fa fa-star-o"></i> Fin:{{$dato->practica_fin}}</p>  
+                                    </td>
+                                    @endif
                                 </tr>
                         @endforeach
                                

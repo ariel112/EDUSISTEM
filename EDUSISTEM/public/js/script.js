@@ -4,7 +4,8 @@ $(document).ready(function(){
 
 $('#alert').hide();
 $('#alertw').hide();
-
+$('#tiempo-practica').hide();
+$('#descripcion-estado').hide();
 
 /*Funcion para desactivar un departamento*/
 $('.btn-delete').click(function(e){
@@ -277,3 +278,33 @@ function onperiodo(id){
 }
 
 
+/*estatus del becarios js*/
+$('#departamentos').change(function(event) {
+   var id = event.target.value;
+   onselector(id); 
+});
+
+$('#estatus').click(function () {
+  var $estatus = $('#estatus').val();
+
+   
+   if ($estatus=='Practica') {
+    $('#tiempo-practica').fadeIn('slow');
+
+    $('#inicio').attr('required', 'true');
+    $('#final').attr('required', 'true');
+    $('#archivo').attr('required', 'true');
+    $('#descripcion').removeAttr('required');
+    $('#descripcion-estado').fadeOut('fast');     
+   }
+   if($estatus=='Activo' || $estatus=='Inactivo' || $estatus=='Egresado'){
+    $('#descripcion').attr('required', 'true');
+    $('#inicio').removeAttr('required');
+    $('#final').removeAttr('required');
+    $('#archivo').removeAttr('required');
+
+    $('#tiempo-practica').fadeOut('slow');
+    $('#descripcion-estado').fadeIn('slow');
+   }
+    
+});

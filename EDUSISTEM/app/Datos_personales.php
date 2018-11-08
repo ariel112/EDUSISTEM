@@ -42,6 +42,14 @@ class Datos_personales extends Model
     	'latitud',
     	'departamento_residencia',
     	'becas_id',
-    	'cuenta_universitaria'
+    	'cuenta_universitaria',
+        'estado_estudios',
+        'fecha_estado_estudios',
+        'practica',
+        'practica_inicio',
+        'practica_fin',
+        'estado_practica',
+        'retencion_inicio',
+        'retencion_final'
     	];
 }

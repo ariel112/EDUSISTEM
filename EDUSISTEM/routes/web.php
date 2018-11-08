@@ -131,3 +131,13 @@ Route::POST('actualizacion/documentos/ficha',[
 
 /*Ruta para mostrar los estatus de los becarios*/
 Route::resource('becarios/estatus','EstatusController');
+
+/*Obtener los perfiles de los becarios estatus*/
+Route::get('becarios/estatus/perfil/{id}',
+                       [
+                        'as'=>'estatus.perfil',
+                        'uses'=>'EstatusController@perfil'
+                       ]);
+
+/* PREPLANILLAS*/
+Route::resource('pre-planilla','PREPlanillasController');
