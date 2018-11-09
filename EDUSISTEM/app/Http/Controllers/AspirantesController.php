@@ -595,10 +595,10 @@ $data =[];
                                         C.nombre ;
                          ");
 
-
+$nuevo = array_merge($preplanilla, $data);
 
       
-       return $data;
+       return $nuevo;
         
        /*
 */
