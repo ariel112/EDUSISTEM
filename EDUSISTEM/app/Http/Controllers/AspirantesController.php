@@ -22,7 +22,7 @@ use App\Datos_personales;
 use App\Estado_estudios;
 use App\Genero;
 use App\Digitalizacion_documentos;
-
+use Illuminate\Database\Eloquent\Collection;
 class AspirantesController extends Controller
 {
     /**
@@ -474,12 +474,10 @@ class AspirantesController extends Controller
         $mes = substr($date, 5,2 );
         $nueva = 'G.'.$mes;
     /*--------------------------- PRIMERO SACO LOS QUE DICEN AMBOS EL PERIODO ---------------------------*/  
-       $preAmbos= DB::select(" 
+       $BecariosAmbos= DB::select(" 
              SELECT 
-                   A.universidad_id, 
-                   A.periodo, 
-                   A.inicio,
-                   A.final,
+                   
+                   A.periodo as periodo,                  
                    B.id_datos_personales as datos,
                    C.nombre
                 FROM calendario_universidad A
@@ -499,61 +497,71 @@ class AspirantesController extends Controller
                         AND (B.promedio_global>=65 AND B.promedio_periodo>=65) 
                         AND (C.estado_estudios='Activo'  OR C.estado_practica= 'Activo')
                         AND ('$numMes' NOT BETWEEN C.retencion_inicio AND C.retencion_final)
-                        AND (". $nueva ."='AMBOS PERIODO')                           
-                            GROUP BY    A.universidad_id, 
-                                        A.periodo, 
-                                        A.inicio,
-                                        A.final,
+                        AND (". $nueva ."='Ambos Periodo')                           
+                            GROUP BY     
+                                        A.periodo,
                                         B.id_datos_personales,
                                         C.nombre ;
                          ");
 
 /*-----------------Cargo la variable info con el id de los que dice ambod--------------------------------*/
-$info = array();
-       foreach ($preAmbos as $id) {           
-             array_push($info,$id->datos);           
-       }
+
+
+
+$data =[];    
+                
+ foreach ($BecariosAmbos as $becario) {
   
-dd($info);
-
-
-      
-       return $preAmbos= DB::select(" 
-             SELECT 
-                   A.universidad_id, 
-                   A.periodo, 
-                   A.inicio,
-                   A.final,
-                   B.id_datos_personales,
-                   C.nombre
+    $row=[];                
+    if($becario->periodo=='II Periodo'){
+         $row['datos']= DB::select("
+                    SELECT 
+                    a.id,
+                    A.universidad_id, 
+                    a.inicio, 
+                    b.id_datos_personales
                 FROM calendario_universidad A
-                LEFT JOIN actualizacion_periodo B
-                ON(A.id=B.calendario_universidad_id)
-                INNER JOIN datos_personales C
-                ON(B.id_datos_personales=C.id)
-                LEFT JOIN retenido D
-                ON(C.id=D.id_datos_personales)
-                INNER JOIN calendario_universidad E
-                ON(B.calendario_universidad_id= E.id)
-                INNER JOIN universidad F
-                ON(E.universidad_id=F.id)
-                INNER JOIN pagos_meses_universidad G
-                ON(G.universidad_id= F.id)
-                WHERE  ('$numMes' BETWEEN A.inicio AND A.final) 
-                        AND (B.promedio_global>=65 AND B.promedio_periodo>=65) 
-                        AND (C.estado_estudios='Activo'  OR C.estado_practica= 'Activo')
-                        AND ('$numMes' NOT BETWEEN C.retencion_inicio AND C.retencion_final)
-                        AND (". $nueva ."='AMBOS PERIODO')                           
-                            GROUP BY    A.universidad_id, 
-                                        A.periodo, 
-                                        A.inicio,
-                                        A.final,
-                                        B.id_datos_personales,
-                                        C.nombre ;
-                         ");
-        dd($preAmbos);
+                INNER JOIN actualizacion_periodo B
+                ON(B.calendario_universidad_id=A.id)
+                WHERE Date_format(A.inicio,'%Y')= YEAR(NOW()) AND A.periodo='I Periodo' AND b.id_datos_personales='$becario->datos' AND (B.promedio_global>=65 AND B.promedio_periodo>=65);
+            ");
+           $data[]=$row;      
+    }
+     $row=[];                
+    if($becario->periodo=='III Periodo'){
+         $row['datos']= DB::select("
+                    SELECT 
+                    a.id,
+                    A.universidad_id, 
+                    a.inicio, 
+                    b.id_datos_personales
+                FROM calendario_universidad A
+                INNER JOIN actualizacion_periodo B
+                ON(B.calendario_universidad_id=A.id)
+                WHERE Date_format(A.inicio,'%Y')= YEAR(NOW()) AND A.periodo='II Periodo' AND b.id_datos_personales='$becario->datos' AND (B.promedio_global>=65 AND B.promedio_periodo>=65);
+            ");
+           $data[]=$row;      
+    }
+     $row=[];                
+    if($becario->periodo=='IV Periodo'){
+         $row['datos']= DB::select("
+                    SELECT 
+                    a.id,
+                    A.universidad_id, 
+                    a.inicio, 
+                    b.id_datos_personales
+                FROM calendario_universidad A
+                INNER JOIN actualizacion_periodo B
+                ON(B.calendario_universidad_id=A.id)
+                WHERE Date_format(A.inicio,'%Y')= YEAR(NOW()) AND A.periodo='III Periodo' AND b.id_datos_personales='$becario->datos' AND (B.promedio_global>=65 AND B.promedio_periodo>=65);
+            ");
+           $data[]=$row;      
+    }
+   
 
-       /*$preplanilla= DB::select(" 
+ }
+
+  $preplanilla= DB::select(" 
              SELECT 
                    A.universidad_id, 
                    A.periodo, 
@@ -586,6 +594,13 @@ dd($info);
                                         B.id_datos_personales,
                                         C.nombre ;
                          ");
+
+
+
+      
+       return $data;
+        
+       /*
 */
     }
 
