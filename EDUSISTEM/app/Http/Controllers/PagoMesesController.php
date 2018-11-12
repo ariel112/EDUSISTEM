@@ -91,8 +91,29 @@ class PagoMesesController extends Controller
      */
     public function edit($id)
     {
-       $pago = Pagos_meses_universidad::find($id);
-       return view('pagos_meses_universidad/edit')->with('pago',$pago);
+        $pagos = DB::select(" 
+            SELECT 
+              A.id as id, 
+              A.01 as enero, 
+              A.02 as febrero, 
+              A.03 as marzo, 
+              A.04 as abril, 
+              A.05 as mayo,
+              A.06 as junio, 
+              A.07 as julio, 
+              A.08 as agosto, 
+              A.09 as septiembre, 
+              A.10 as octubre, 
+              A.11 as noviembre, 
+              A.12 as diciembre
+              
+                FROM pagos_meses_universidad A
+                WHERE A.id='$id';
+
+         ");
+
+      // $pago = Pagos_meses_universidad::find($id);
+       return view('pagos_meses_universidad/edit')->with('pagos',$pagos);
     }
 
     /**
@@ -106,6 +127,7 @@ class PagoMesesController extends Controller
     {
         
         $mes =Pagos_meses_universidad::find($id);
+
         $mes->fill($request->all());
          $mes->save();
 
@@ -126,9 +148,23 @@ class PagoMesesController extends Controller
 
     public function perfil($id){
         $pagos = DB::select(" 
-            SELECT id, 01 enero, 02 febrero, 03 marzo, 04 abril, 05 mayo,06 junio, 07 julio, 08 agosto, 09 septiembre, 10 octubre, 11 noviembre, 12 diciembre
-                FROM pagos_meses_universidad
-                WHERE universidad_id='$id';
+            SELECT 
+              A.id, 
+              A.01 as enero, 
+              A.02 as febrero, 
+              A.03 as marzo, 
+              A.04 as abril, 
+              A.05 as mayo,
+              A.06 as junio, 
+              A.07 as julio, 
+              A.08 as agosto, 
+              A.09 as septiembre, 
+              A.10 as octubre, 
+              A.11 as noviembre, 
+              A.12 as diciembre
+              
+                FROM pagos_meses_universidad A
+                WHERE A.universidad_id='$id';
 
          ");
         $universidad = Universidad::find($id);

@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('Edusistem', 'Edusistem') }}</title>
-
+    <link rel="icon" type="image/png" href="{{asset('img/icon.png')}}" />    
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('semantic/semantic.min.js') }}" defer></script>

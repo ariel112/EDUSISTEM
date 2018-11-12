@@ -10,17 +10,17 @@ class Pagos_meses_universidad extends Model
    protected $fillable = [
    	'id',
    	'universidad_id',
-   	'enero',
-   	'febrero',
-   	'marzo',
-   	'abril',
-   	'mayo',
-   	'junio',
-   	'julio',
-   	'agosto',
-   	'septiembre',
-   	'octubre',
-   	'noviembre',
-   	'diciembre'   	
+   	'01',
+   	'02',
+   	'03',
+   	'04',
+   	'05',
+   	'06',
+   	'07',
+   	'08',
+   	'09',
+   	'10',
+   	'11',
+   	'12'   	
    	];
 }

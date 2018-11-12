@@ -140,4 +140,4 @@ Route::get('becarios/estatus/perfil/{id}',
                        ]);
 
 /* PREPLANILLAS*/
-Route::resource('pre-planilla','PREPlanillasController');
+Route::resource('pre_planilla','PREPlanillasController');

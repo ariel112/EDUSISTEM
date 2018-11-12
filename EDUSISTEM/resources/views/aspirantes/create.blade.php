@@ -20,7 +20,7 @@ function valida(e){
 
 
 /*Evento para evento de letras */
-
+ 
    function soloLetras(e){
        key = e.keyCode || e.which;
        tecla = String.fromCharCode(key).toLowerCase();
@@ -72,7 +72,9 @@ function valida(e){
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Numero de identidad:
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  name="identidad" onkeypress="return valida(event)" maxlength="13" minlength="13" required="required" class="form-control col-md-7 col-xs-12">
+                              <input style="float: left!important;" type="text" id="respuesta_id"  name="identidad" onkeypress="return valida(event)" maxlength="13" minlength="13" required="required" class="form-control col-md-7 col-xs-12">
+                              <span id="sp_si" style="color: #3edc3e; display: none;"><i class="fa fa-check-circle"></i></span>
+                              <span id="sp_id" style="color: red; display: none;"><i class="fa fa-close"> </i> La Identidad ya existe</span>
                             </div>
                           </div>
 

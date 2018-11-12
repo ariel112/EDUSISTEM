@@ -24,4 +24,5 @@ Route::get('/campus/{id}/universidades', 'AspirantesController@bycampus');
 Route::get('/facultads/{id}/campus', 'AspirantesController@byfacultads');
 Route::get('/carreras/{id}/facultads', 'AspirantesController@bycarreras');
 Route::get('/periodos/{id}/university', 'AspirantesController@byperiodos');
-Route::get('/preplanilla/{date}/pago','AspirantesController@preplanilla' );
+Route::get('/preplanilla/{date}/pago','PREPlanillasController@preplanilla' );
+Route::get('/identidad/{identidad}/respuesta','AspirantesController@byrespuesta');

@@ -1,11 +1,13 @@
 $(document).ready(function(){
 
+$('.estirar-boton').attr('placeholder',' Buscar...');
 
-
+$('.estirar-boton').removeClass('input-sm');
 $('#alert').hide();
 $('#alertw').hide();
 $('#tiempo-practica').hide();
 $('#descripcion-estado').hide();
+
 
 /*Funcion para desactivar un departamento*/
 $('.btn-delete').click(function(e){
@@ -146,6 +148,7 @@ $('#departamentos').change(function(event) {
    onselector(id); 
 });
 
+
 /*codigo para ver las campus*/
 $('#universidad').change(function(event) {
    var id = event.target.value;
@@ -171,7 +174,18 @@ $('#universidad').change(function(event) {
    onperiodo(id); 
 });
 
+/*codigo para ver los periodos por universidad*/
+$('#respuesta_id').blur(function(event){
+   var identidad = event.target.value;
+  //console.log(identidad);
+   onrespuesta(identidad);
+});
 
+/*
+$('#generar_preplanilla').click(function(){
+  console.log($('#mesPrePlanilla').val());
+})
+*/
 
 });
 
@@ -308,3 +322,42 @@ $('#estatus').click(function () {
    }
     
 });
+
+
+
+/*----------------------------------Verifica la que el becario no exista-------------------------------------------------------------------------*/
+
+function onrespuesta(identidad){
+
+  if(identidad){
+
+      $.get('/api/identidad/'+identidad+'/respuesta', function(data){     
+        if( Object.keys(data).length === 0 ) {
+              $("#respuesta_id").css({'border':'2px solid #3edc3e'});
+                         $('#sp_id').fadeOut();
+                         $('#sp_si').fadeIn();
+                console.log('la identidad No existe exite');
+                } 
+                else{
+                      var dato =data[0].respuesta; 
+                      if(dato=='SI'){
+                         $("#respuesta_id").css({'border':'2px solid red'});
+                         $('#sp_id').fadeIn();
+                         $('#sp_si').fadeOut();
+                      console.log('la identidad ya exite');
+                                     }
+                   }
+
+              });
+
+  }else{
+              console.log('Nada');
+            
+
+        }
+
+}
+
+
+
+/*-------------------------------------------------codigo para cargar las preplanillas segun el mes------------------------------------------*/
