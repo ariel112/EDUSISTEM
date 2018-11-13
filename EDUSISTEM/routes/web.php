@@ -11,7 +11,6 @@
 |
 */
 
-
 Route::get('/', function () {
     return view('auth/login');
 });
@@ -142,9 +141,3 @@ Route::get('becarios/estatus/perfil/{id}',
 
 /* PREPLANILLAS*/
 Route::resource('pre_planilla','PREPlanillasController');
-
-/*Genero las exportaciones en excel de las preplanillas*/
-Route::get('/download-preplanilla/{dates}', 'PREPlanillasController@export')->name('preplanilla.excel');;
-
-
-         

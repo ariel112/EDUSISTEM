@@ -160,9 +160,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
-        Maatwebsite\Excel\ExcelServiceProvider::class,
 
-    ], 
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -213,7 +212,6 @@ return [
 
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

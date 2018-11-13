@@ -191,16 +191,12 @@ abstract class AbstractPaginator implements Htmlable
     /**
      * Add a set of query string values to the paginator.
      *
-     * @param  array|string|null  $key
+     * @param  array|string  $key
      * @param  string|null  $value
      * @return $this
      */
     public function appends($key, $value = null)
     {
-        if (is_null($key)) {
-            return $this;
-        }
-
         if (is_array($key)) {
             return $this->appendArray($key);
         }
