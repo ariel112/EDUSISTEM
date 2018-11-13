@@ -1,5 +1,10 @@
 <?php
 
+use App\Exports\PrePlanillaExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +15,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     return view('auth/login');
@@ -141,3 +147,10 @@ Route::get('becarios/estatus/perfil/{id}',
 
 /* PREPLANILLAS*/
 Route::resource('pre_planilla','PREPlanillasController');
+
+/*Planilla de excel*/
+Route::get('download/pre_planilla', function(){
+  return (new PrePlanillaExport)->download('invoices.xlsx');
+ 
+});
+
