@@ -142,8 +142,6 @@ class AspirantesController extends Controller
      */
     public function store(Request $request)
     {  
-        $carbon=Carbon::now();       
-
         $madreID=0;
         $padreID=0;
  
@@ -185,12 +183,6 @@ class AspirantesController extends Controller
         $aspirante->genero= $request->id_genero;
         $aspirante->becas_id=$request->becas_id;
         $aspirante->cuenta_universitaria=$request->cuenta_universitaria;
-
-        /*fecha para que funcionen las retenciones*/
-
-        $aspirante->retencion_inicio = Carbon::parse('2010-10-10');
-        $aspirante->retencion_final  = Carbon::parse('2010-12-12');
-
         /*lleno informacion en los datos personales*/
         $aspirante->estado_estudios='Activo';
         $aspirante->fecha_estado_estudios= $padre->created_at;        
