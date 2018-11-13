@@ -9,8 +9,6 @@
 @section("content")
 <div class="right_col" role="main">
 
-  <a href="{{route('preplanilla.excel',23)}}"><button class="btn btn-success">Generar preplanilla excel</button></a>
-
 {!! Form::open(['route' => 'pre_planilla.store', 'method'=>'POST', 'files'=>true, 'id'=>'formAspi','data-parsley-validate','class'=>'form-horizontal form-label-left']) !!}
 
  <div class="col-md-12 col-sm-12 col-xs-12">
@@ -29,8 +27,7 @@
                             <br>
                     </div>
    {!! Form::submit('Generar ',['class'=>'btn btn-success','id'=>'btnEmpty' ]) !!}
-   {!!Form::close()!!}               
-                                               
+                                                <a href="{{url("decargar/$date/preplanilla")}}" class="btn btn-success">Descargar excel</a>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">                

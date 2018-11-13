@@ -7,19 +7,15 @@ use App\Http\Controllers\Controller;
 use App\Datos_personales;
 use Carbon\Carbon;
 use DB;
-   
 use Maatwebsite\Excel\Facades\Excel;
+
 
 class PREPlanillasController extends Controller
 {
-  
-
-   
 
     /*Este constructor lo que hace es pasarme a espanol la fecha con carbon*/
     public function __construct(){
            Carbon::setLocale('es');
-            
                                  }
 
     /**
@@ -398,6 +394,8 @@ $practica= DB::select("
      return view('pre_planillas/index')->with('nuevo',$nuevo)->with('date',$date)->with('mesP',$mesP);
     }
 
+
+
     /**
      * Display the specified resource.
      *
@@ -445,13 +443,21 @@ $practica= DB::select("
     }
 
 
-    public function export($date) {
-        
- Excel::create('Becarios ', function($excel) {
-            $excel->sheet('Completa', function($sheet) {
+public function excel($date){
 
-        $date = '2018-06-13' ;
-  
+
+
+
+Excel::create('Preplanilla Becas', function($excel) use ($date){
+    $excel->sheet('Becarios', function($sheet) use ($date){
+
+
+
+
+
+
+
+        
         $fecha = Carbon::parse($date);
         $mfecha = $fecha->format("m");
         $yfecha =  $fecha->format("Y");
@@ -796,8 +802,14 @@ $practica= DB::select("
                                          ");
 
     $nuevo = array_merge($preplanilla, $info, $practica);
+
+
+
+
+
     
-     $data2 =[];
+
+    $data2 =[];
                  foreach ($nuevo as $datos){
                     $row=[];
                     $row['Nombre Completo']=$datos->nombre;
@@ -811,6 +823,7 @@ $practica= DB::select("
 
 
 
+<<<<<<< HEAD
                
 
                 $sheet->fromArray($data2);
@@ -1046,57 +1059,15 @@ $data=[];
                 ON(E.universidad_id=F.id)
                 INNER JOIN pagos_meses_universidad G
                 ON(G.universidad_id= F.id)
+=======
+>>>>>>> 7bb8a162052bea7110f3caa36e902ed73abe067f
 
-                 INNER JOIN datos_personales_has_carreras H
-                ON(C.id=H.id_datos_personales)
-                INNER JOIN carreras I
-                ON(H.carrera_id=I.id)
-                INNER JOIN facultad J
-                ON(I.facultad_id=J.id)
-                INNER JOIN campus K
-                ON(J.campus_id=K.id)
-                INNER JOIN municipio L
-                ON(K.id_municipio=L.id_municipio)
-                INNER JOIN departamento M
-                ON(L.id_depto=M.id_depto)
+        $sheet->fromArray($data2);
+    });
+})->export('xls');
 
-                WHERE  ('$numMes' BETWEEN A.inicio AND A.final) 
-                        AND (B.promedio_global>=65 AND B.promedio_periodo>=65) 
-                        AND (C.estado_estudios='Activo'  OR C.estado_practica= 'Activo')
-                        AND ('$numMes' NOT BETWEEN C.retencion_inicio AND C.retencion_final)
-                        AND (" . $nueva . "='Si')                           
-                            GROUP BY    A.universidad_id, 
-                                        A.periodo, 
-                                        A.inicio,
-                                        A.final,
-                                        B.id_datos_personales,
-                                        C.nombre,
-                                        M.departamento,
-                                        C.identidad,
-                                        C.genero,
-                                        F.nombre ,
-                                        C.celular,
-                                        F.abreviatura ;     
-                                         ");
 
-$info = array();
-foreach ($data as $key => $value) {
-    foreach ($value as $key2 => $dato) {
-        $info= array_prepend($info,$dato);
-    }
 }
-
-
-$nuevo = array_merge($preplanilla, $data);
-
-      
-       return $info;
-        
-    }
-
-
-
-
 
 
 }

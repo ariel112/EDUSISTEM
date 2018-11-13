@@ -1,5 +1,10 @@
 <?php
 
+use App\Exports\PrePlanillaExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -143,8 +148,5 @@ Route::get('becarios/estatus/perfil/{id}',
 /* PREPLANILLAS*/
 Route::resource('pre_planilla','PREPlanillasController');
 
-/*Genero las exportaciones en excel de las preplanillas*/
-Route::get('/download-preplanilla/{dates}', 'PREPlanillasController@export')->name('preplanilla.excel');;
 
-
-         
+Route::get('decargar/{date}/preplanilla', 'PREPlanillasController@excel');

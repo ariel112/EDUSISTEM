@@ -20,7 +20,7 @@ return array(
     'App\\Estado_civil' => $baseDir . '/app/Estado_civil.php',
     'App\\Estado_estudios' => $baseDir . '/app/Estado_estudios.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
-    'App\\Exports\\UsersExport' => $baseDir . '/app/Exports/UsersExport.php',
+    'App\\Exports\\PrePlanillaExport' => $baseDir . '/app/Exports/PrePlanillaExport.php',
     'App\\Facultad' => $baseDir . '/app/Facultad.php',
     'App\\Ficha_documentos' => $baseDir . '/app/Ficha_documentos.php',
     'App\\Genero' => $baseDir . '/app/Genero.php',

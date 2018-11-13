@@ -384,7 +384,7 @@ class ComposerStaticInite62a26980fe2a8065cd00185a77d4513
         'App\\Estado_civil' => __DIR__ . '/../..' . '/app/Estado_civil.php',
         'App\\Estado_estudios' => __DIR__ . '/../..' . '/app/Estado_estudios.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Exports\\UsersExport' => __DIR__ . '/../..' . '/app/Exports/UsersExport.php',
+        'App\\Exports\\PrePlanillaExport' => __DIR__ . '/../..' . '/app/Exports/PrePlanillaExport.php',
         'App\\Facultad' => __DIR__ . '/../..' . '/app/Facultad.php',
         'App\\Ficha_documentos' => __DIR__ . '/../..' . '/app/Ficha_documentos.php',
         'App\\Genero' => __DIR__ . '/../..' . '/app/Genero.php',
