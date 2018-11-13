@@ -10,7 +10,7 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.7",
-        "maatwebsite/excel": "^3.1",
+        "maatwebsite/excel": "~2.1.0",
         "nesbot/carbon": "^1.26.3"
     },
     "require-dev": {

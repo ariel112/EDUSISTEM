@@ -148,9 +148,5 @@ Route::get('becarios/estatus/perfil/{id}',
 /* PREPLANILLAS*/
 Route::resource('pre_planilla','PREPlanillasController');
 
-/*Planilla de excel*/
-Route::get('download/pre_planilla', function(){
-  return (new PrePlanillaExport)->download('invoices.xlsx');
- 
-});
 
+Route::get('decargar/{date}/preplanilla', 'PREPlanillasController@excel');
