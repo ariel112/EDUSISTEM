@@ -150,3 +150,16 @@ Route::resource('pre_planilla','PREPlanillasController');
 
 
 Route::get('decargar/{date}/preplanilla', 'PREPlanillasController@excel');
+
+
+/*Accede ala planilla complementarias*/
+Route::resource('complementaria','ComplementariaController');
+/*Obtener los perfiles de los usuarios para la planilla complementaria*/
+Route::get('complemnetaria/perfil/{id}',
+                       [
+                        'as'=>'complementaria.perfil',
+                        'uses'=>'ComplementariaController@perfil'
+                       ]);
+
+/*Nombre de las Complementarias*/
+Route::resource('complementaria/Cnombre','NombreComplementariaController');

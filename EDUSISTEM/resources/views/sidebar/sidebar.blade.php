@@ -92,6 +92,12 @@
                           <li><a href="{{route('becas.index')}}"><i class="fa fa-search"></i> Becas disponibles</a></li>                           
                         </ul>
                     </li>
+                    <li><a><i class="fa fa-refresh"></i> Nombre complementaria <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="{{route('Cnombre.create')}}"><i class="fa fa-search"></i>Buscar becarios</a></li>
+                          <li><a href="{{route('Cnombre.index')}}"><i class="fa fa-search"></i>Buscar becarios</a></li>
+                        </ul>
+                    </li>
                     <li><a><i class="fa fa-refresh"></i> Actualizacion <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                           <li><a href="{{route('actualizacion.index')}}"><i class="fa fa-search"></i>Buscar becarios</a></li>
@@ -114,7 +120,8 @@
                     </li>
                     <li><a><i class="fa fa-list-alt"></i>Plan. Complementarias<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                          <li><a href="{{route('pre_planilla.index')}}"><i class="fa fa-search"></i> Buscar becarios</a></li>
+                          <li><a href="{{route('complementaria.index')}}"><i class="fa fa-search"></i> Buscar becarios</a></li>
+                          <li><a href="{{route('complementaria.index')}}"><i class="fa fa-search"></i> Complementarias</a></li>
                         </ul>
                     </li>  
 

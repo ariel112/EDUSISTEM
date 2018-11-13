@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Complementaria_planilla;
 use App\Datos_personales;
+use DB;
 
-class Complementaria_planilla extends Controller
+class ComplementariaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class Complementaria_planilla extends Controller
 
        $datos = Datos_personales::all();
 
-       return view('planilla_complementaria/index.blade.php')->with('datos', $datos);
+       return view('planilla_complementaria/index')->with('datos', $datos);
     }
 
 
@@ -103,7 +104,7 @@ class Complementaria_planilla extends Controller
 
 
 
-        return view('planilla_complementaria/perfil.blade.php')->with("becarios",$becarios)->with('expedientes',$expedientes); 
+        return view('planilla_complementaria/perfil')->with("becarios",$becarios)->with('expedientes',$expedientes); 
     }
 
     /**
@@ -123,8 +124,13 @@ class Complementaria_planilla extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+
+        $complementaria= new Complementaria_planilla($request->all());
+        $complementaria->fecha= $request->fecha.'-15';       
+        $complementaria->save();
+
+    return redirect()->route('complementaria.perfil',$complementaria->datos_personales_id);
     }
 
     /**

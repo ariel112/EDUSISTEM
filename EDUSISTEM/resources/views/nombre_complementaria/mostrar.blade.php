@@ -12,7 +12,7 @@
  <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Busqueda para agregar a Planilla Complementaria </h2>
+                    <h2>Nombre de las complementarias</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -28,34 +28,26 @@
                     <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                        <th class="alinear" >Imagen</th>
+                       
                         <th>Nombre</th>
-                        <th>Identidad</th>
-                        <th>Telefono</th>                      
-                        
+                        <th>Estado</th>                                            
+                        <th class="alinear"> Desactivar</th>
                         </tr>
                       </thead>
 
 
                       <tbody>
-                         @foreach($datos as $dato)
+                         @foreach($nombres as $dato)
                                 <tr>
-                                    @if($dato->genero==1)
-                                    <td class="center">
-                                        <a href="{{route('complementaria.perfil', $dato->id)}}">
-                                            <img class="center-imagen" width="50" height="50" src="{{asset('images/estudentM.png')}}">
-                                        </a>    
-                                    </td>
-                                    @else
-                                    <td class="center">
-                                        <a href="{{route('complementaria.perfil',$dato->id)}}">
-                                            <img class="center-imagen" width="50" height="50" src="{{asset('images/estudentF.png')}}">
-                                        </a>    
-                                    </td>
-                                    @endif
+                                    
                                     <td>{{$dato->nombre}}</td>
-                                    <td>{{$dato->identidad}}</td>
-                                    <td>{{$dato->celular}}</td>                              
+                                    <td>{{$dato->estado}}</td>                                                                       
+                                    <td class="alinear">
+                                        <a href="{{route('Cnombre.update',$dato->id)}}">
+                                            <img class="center-imagen" width="50" height="50" src="{{asset('images/editar.png')}}">
+                                        </a>
+                                    </td>
+                            
                                 </tr>
                         @endforeach
                                
@@ -74,7 +66,7 @@
 @section('script')
 
  <!-- Datatables -->
-    <script type="text/javascript" src="{{asset('template/vendors/datatables.net/js/jquery.dataTables.js')}}"></script>  
+    <script type="text/javascript" src="{{asset('template/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>  
     <script type="text/javascript" src="{{asset('template/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('template/vendors/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('template/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
