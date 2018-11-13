@@ -816,7 +816,7 @@ $practica= DB::select("
                 $sheet->fromArray($data2);
                 $sheet->setOrientation('landscape');
             });
-        })->export('csv');
+        })->export('xls');
 
 
 
