@@ -192,8 +192,13 @@
             </div> 
              
            <div class="form-group" >
-            <label for="message-text" class="col-form-label">Mes:</label>
-            <input  type="MONTH" class="form-control"  name="fecha" required style="width: 220px;">
+            <label for="message-text" class="col-form-label">Mes:</label>           
+
+            <select class="form-control" name="nombre_complementaria_id">
+              @foreach($nombres as $nombre)
+              <option value="{{$nombre->id}}">{{$nombre->nombre}}</option>
+              @endforeach
+            </select>
           </div>       
         
         </form>

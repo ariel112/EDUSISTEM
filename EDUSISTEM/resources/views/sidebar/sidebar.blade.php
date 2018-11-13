@@ -92,10 +92,10 @@
                           <li><a href="{{route('becas.index')}}"><i class="fa fa-search"></i> Becas disponibles</a></li>                           
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-refresh"></i> Nombre complementaria <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-font"></i> Nombre complementaria <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                          <li><a href="{{route('Cnombre.create')}}"><i class="fa fa-search"></i>Buscar becarios</a></li>
-                          <li><a href="{{route('Cnombre.index')}}"><i class="fa fa-search"></i>Buscar becarios</a></li>
+                          <li><a href="{{route('Cnombre.create')}}"><i class="fa fa-plus"></i>Añadir </a></li>
+                          <li><a href="{{route('complementaria.mostrar')}}"><i class="fa fa-search"></i>Buscar </a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-refresh"></i> Actualizacion <span class="fa fa-chevron-down"></span></a>

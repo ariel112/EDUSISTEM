@@ -14,10 +14,13 @@ class NombreComplementariaController extends Controller
      */
     public function index()
     {
-        //$nombres = Nombre_complementaria::all();   
-        return view('nombre_complementaria.index');
+        
     }
 
+    public function mostrar(){
+        $nombres = Nombre_complementaria::all();   
+        return view('nombre_complementaria.mostrar')->with('nombres',$nombres);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -39,8 +42,8 @@ class NombreComplementariaController extends Controller
     public function store(Request $request)
     {          
         $nombre = new Nombre_complementaria($request->all());
-
-        return redirect()->route('Cnombre.index');
+        $nombre->save();
+        return redirect()->route('complementaria.mostrar');
     }
 
     /**
@@ -51,7 +54,10 @@ class NombreComplementariaController extends Controller
      */
     public function show($id)
     {
-        //
+       $nombre = Nombre_complementaria::find($id);
+       $nombre->estado ='Desactivo'; 
+       $nombre->save(); 
+       return redirect()->route('complementaria.mostrar');
     }
 
     /**
@@ -74,7 +80,7 @@ class NombreComplementariaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

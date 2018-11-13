@@ -43,8 +43,8 @@
                                     <td>{{$dato->nombre}}</td>
                                     <td>{{$dato->estado}}</td>                                                                       
                                     <td class="alinear">
-                                        <a href="{{route('Cnombre.update',$dato->id)}}">
-                                            <img class="center-imagen" width="50" height="50" src="{{asset('images/editar.png')}}">
+                                        <a href="{{route('Cnombre.show',$dato->id)}}">
+                                          <button class="btn btn-danger">Desactivar</button>
                                         </a>
                                     </td>
                             

@@ -101,10 +101,16 @@ class ComplementariaController extends Controller
 
         
         
+          $nombres = DB::select("
+             SELECT A.id as id, A.nombre as nombre, A.estado as estado
+                FROM nombre_complementaria A
+                LEFT JOIN planilla_complementaria B
+                ON(B.nombre_complementaria_id=A.id)
+                WHERE B.nombre_complementaria_id IS NULL AND A.estado= 'Activo';       
+           ");
 
 
-
-        return view('planilla_complementaria/perfil')->with("becarios",$becarios)->with('expedientes',$expedientes); 
+        return view('planilla_complementaria/perfil')->with("becarios",$becarios)->with('expedientes',$expedientes)->with('nombres',$nombres); 
     }
 
     /**
@@ -127,7 +133,8 @@ class ComplementariaController extends Controller
     {   
 
         $complementaria= new Complementaria_planilla($request->all());
-        $complementaria->fecha= $request->fecha.'-15';       
+        
+
         $complementaria->save();
 
     return redirect()->route('complementaria.perfil',$complementaria->datos_personales_id);

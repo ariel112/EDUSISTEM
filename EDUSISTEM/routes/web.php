@@ -163,3 +163,9 @@ Route::get('complemnetaria/perfil/{id}',
 
 /*Nombre de las Complementarias*/
 Route::resource('complementaria/Cnombre','NombreComplementariaController');
+
+Route::get('complemnetaria/mostrar-nombre',
+                       [
+                        'as'=>'complementaria.mostrar',
+                        'uses'=>'NombreComplementariaController@mostrar'
+                       ]);

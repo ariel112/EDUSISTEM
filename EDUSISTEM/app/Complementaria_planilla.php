@@ -16,6 +16,7 @@ class Complementaria_planilla extends Model
     	'created_at',
     	'updated_at',
     	'fecha',
-    	'observacion'
+    	'observacion',
+        'nombre_complementaria_id'
     ];
 }
