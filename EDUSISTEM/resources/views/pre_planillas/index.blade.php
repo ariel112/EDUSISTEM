@@ -27,7 +27,10 @@
                             <br>
                     </div>
    {!! Form::submit('Generar ',['class'=>'btn btn-success','id'=>'btnEmpty' ]) !!}
-                                                <a href="{{url("decargar/$date/preplanilla")}}" class="btn btn-success">Descargar excel</a>
+      @if($nuevo=='NO')
+      @else()      
+      <a href="{{url("decargar/$date/preplanilla")}}" class="btn btn-success">Descargar excel</a>
+      @endif     
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">                
