@@ -29,7 +29,10 @@
    {!! Form::submit('Generar ',['class'=>'btn btn-success','id'=>'btnEmpty' ]) !!}
       @if($nuevo=='NO')
       @else()      
+<<<<<<< HEAD:Edusystem/resources/views/pre_planillas/index.blade.php
       <a href="{{url("preplanilla/descarga/$date")}}" class="btn btn-success">Descargar excel</a>
+=======
+>>>>>>> 037ff3e0173f25a3fe9d014ec860b33c6bbdae2c:EDUSISTEM/resources/views/pre_planillas/index.blade.php
       @endif     
                     <div class="clearfix"></div>
                   </div>
